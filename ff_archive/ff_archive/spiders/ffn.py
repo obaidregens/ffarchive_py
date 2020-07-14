@@ -4,20 +4,32 @@ import pymongo
 mongo = pymongo.MongoClient("mongodb://localhost:27017/")
 ffn = mongo['ff_archive']['ffn']
 
-
 class ffnCrawler(scrapy.Spider):
-    max_books = 1000
+    max_pages = 40
     books_count = ffn.count_documents({})
     name = "ffn"
     start_urls = [
-        "https://www.fanfiction.net/book/Harry-Potter/?&srt=5&r=10",
+        "https://www.fanfiction.net/book/Harry-Potter/?&srt=4&r=10",
     ]
 
     def parse(self, response):
+        type_img = response.xpath('//*[@id="content_wrapper_inner"]/img[1]').attrib['src']
+        if type_img == '//ff74.b-cdn.net/static/ficons/script.png':
+            fandom = [response.xpath('//*[@id="content_wrapper_inner"]/span[2]/following-sibling::text()').get().rstrip()]
+        elif type_img == '//ff74.b-cdn.net/static/fcons/arrow-switch.png':
+            fandom = [
+                response.xpath('//*[@id="content_wrapper_inner"]/a[1]/text()').get(),
+                response.xpath('//*[@id="content_wrapper_inner"]/a[2]/text()').get()
+            ]
+        else:
+            print('Unknown type')
+            exit(0)
         for book in response.css('#content_wrapper_inner > div.z-list'):
 
             raw_tags = ''.join(book.css('.z-padtop2.xgray::text,.z-padtop2.xgray *::text').getall()).split(' - ')
             tags = {}
+
+            tags['Fandom'] = fandom
             tags['Language'] = raw_tags.pop(1)
             if 'Chapters: ' not in raw_tags[1]:
                 tags['Genre'] = raw_tags.pop(1).split('/')
@@ -76,8 +88,9 @@ class ffnCrawler(scrapy.Spider):
                     "book"          : book_data,
                 }
             )
+        pg = int(response.xpath('//*[@id="content_wrapper_inner"]/center[1]/b[1]/text()').get())
         next_pg = response.xpath('//*[@id="content_wrapper_inner"]/center[1]/a[contains(text(),\'Next »\')]').attrib['href']
-        if ( (next_pg is not None) & (self.books_count <= self.max_books) ):
+        if (next_pg is not None) & (pg < self.max_pages):
             yield scrapy.Request(
                 response.urljoin(next_pg),
                 callback = self.parse
