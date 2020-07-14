@@ -1,16 +1,14 @@
 import scrapy
-
 import pymongo
-from bson.objectid import ObjectId
 
 mongo = pymongo.MongoClient("mongodb://localhost:27017/")
 ffn = mongo['ff_archive']['ffn']
-# ffn.delete_many({})
 
-class BooksCrawler(scrapy.Spider):
+
+class ffnCrawler(scrapy.Spider):
     max_books = 1000
     books_count = ffn.count_documents({})
-    name = "books"
+    name = "ffn"
     start_urls = [
         "https://www.fanfiction.net/book/Harry-Potter/?&srt=5&r=10",
     ]
@@ -48,9 +46,9 @@ class BooksCrawler(scrapy.Spider):
                         tags['All Characters'] += char_set
             # Existence Check
             ID = int(book.css("a.stitle::attr(href)").get().split('/')[2])
-            existing = ffn.find_one({ "_id" : str(ID )})
+            existing = ffn.find_one({ "_id" : ID })
             if existing is not None :
-                if len(existing['Chapters']) >= book_data['Tags']['Chapters']:
+                if len(existing['Chapters']) >= tags['Chapters']:
                     continue
             else :
                 self.books_count += 1
@@ -79,7 +77,7 @@ class BooksCrawler(scrapy.Spider):
                 }
             )
         next_pg = response.xpath('//*[@id="content_wrapper_inner"]/center[1]/a[contains(text(),\'Next »\')]').attrib['href']
-        if (next_pg is not None & self.books_count <= self.max_books):
+        if ( (next_pg is not None) & (self.books_count <= self.max_books) ):
             yield scrapy.Request(
                 response.urljoin(next_pg),
                 callback = self.parse
@@ -98,6 +96,6 @@ class BooksCrawler(scrapy.Spider):
             )
         else:
             ffn.replace_one({'_id': book['_id']}, book, True )
-            yield book
+            yield {'ID': book['_id'], 'count': self.books_count}
 
-# Run "scrapy crawl books -o books.json" to test
+# Run "scrapy crawl ffn" to test
