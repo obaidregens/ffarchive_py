@@ -1,18 +1,76 @@
+import os
+import glob
+import time
 import scrapy
-import pymongo
+import mysql.connector
+import json
+import pathlib
+class crawl_settings:
+    filename = str(pathlib.Path(__file__).parent.absolute()) + "/.settings"
+    def __init__(self):
+        self.urls = []
+        self.crawl = {}
+        self.db = {}
+        file_is = open(crawl_settings.filename, "r+")
+        raw = file_is.read()
+        if ( len(raw) <= 1):
+            return
+        self.urls = raw.split('\n')
+        file_is.close()
+        settings_dict = json.loads(self.urls.pop(0))
+        self.crawl = settings_dict['crawl']
+        self.db = settings_dict['db']
+    def sample(self):
+        seperator = "\n"
+        json_settings = json.dumps({
+            "db"    : {
+                "name"      : "ffonline",
+                "user"      : 'root',
+                'password'  : ''
+            },
+            "crawl" : {
+                'max_pages'       : 1,
+                'dump_dir'        : ''
+            }
+        })
+        url = seperator.join([
+            "https://www.fanfiction.net/book/Harry-Potter/?&srt=4&r=10"
+        ])
+        f = open(crawl_settings.filename, "w")
+        f.write(json_settings + seperator + url)
+        f.close()
 
-mongo = pymongo.MongoClient("mongodb://localhost:27017/")
-ffn = mongo['ff_archive']['ffn']
+
+
+settings = crawl_settings()
+sql_connection = mysql.connector.connect(
+  host = "localhost",
+  user = settings.db["user"],
+  password = settings.db["password"],
+  database = settings.db["name"]
+)
+db = sql_connection.cursor()
 
 class ffnCrawler(scrapy.Spider):
-    max_pages = 40
-    books_count = ffn.count_documents({})
     name = "ffn"
-    start_urls = [
-        "https://www.fanfiction.net/book/Harry-Potter/?&srt=4&r=10",
-    ]
+    max_pages = settings.crawl["max_pages"] or 1
+    start_urls = settings.urls or []
+
+    def __init__(self, name=None, **kwargs):
+        self.start_timestamp = time.time()
+        _dir = settings.crawl['dump_dir'] or ""
+        if (_dir == ''):
+            _dir = os.getcwd()
+        self.scraped = []
+        file_list = glob.glob(os.path.join(_dir, '*.jsonl'))
+        for filename in file_list:
+            ufile = open(filename, 'r')
+            lines = ufile.readlines() 
+            for fileLine in lines:
+                self.scraped.append(json.loads(fileLine)['_id'])
 
     def parse(self, response):
+        # Fandom Determination
         type_img = response.xpath('//*[@id="content_wrapper_inner"]/img[1]').attrib['src']
         if type_img == '//ff74.b-cdn.net/static/ficons/script.png':
             fandom = [response.xpath('//*[@id="content_wrapper_inner"]/span[2]/following-sibling::text()').get().rstrip()]
@@ -24,8 +82,30 @@ class ffnCrawler(scrapy.Spider):
         else:
             print('Unknown type')
             exit(0)
-        for book in response.css('#content_wrapper_inner > div.z-list'):
+        # Get Existing
+        def book_ids_from_links(book_link):
+            return int(book_link.split('/')[2])
+        all_book_ids = list(map( book_ids_from_links, response.css('#content_wrapper_inner > div.z-list > a.stitle::attr(href)').getall() ))
+        
+        db.execute("SELECT post_id,meta_value FROM wp_postmeta WHERE meta_key = 'ffn_book_id' AND meta_value IN (" + ','.join(['%s' for i in range(len(all_book_ids))]) + ")", all_book_ids )
+        book_ids = {}
+        post_ids = {}
+        for key, value in dict(db.fetchall()).items():
+            book_ids[int(value)] = int(key)
+            post_ids[int(key)] = int(value)
+        chapters_count = {}
+        if post_ids:
+            db.execute("SELECT post_parent FROM wp_posts WHERE post_parent IN (" + ','.join( map(str,post_ids.keys()) ) + ")")
+            chapters_result = db.fetchall()
+            for item in chapters_result:
+                item_is = post_ids[int(item[0])]
+                if item_is in chapters_count:
+                    continue
+                chapters_count[item_is] = chapters_result.count(item)
 
+        for book in response.css('#content_wrapper_inner > div.z-list'):
+            ID = int(book.css("a.stitle::attr(href)").get().split('/')[2])
+            
             raw_tags = ''.join(book.css('.z-padtop2.xgray::text,.z-padtop2.xgray *::text').getall()).split(' - ')
             tags = {}
 
@@ -57,13 +137,15 @@ class ffnCrawler(scrapy.Spider):
                             tags['Characters'] = char_set
                         tags['All Characters'] += char_set
             # Existence Check
-            ID = int(book.css("a.stitle::attr(href)").get().split('/')[2])
-            existing = ffn.find_one({ "_id" : ID })
-            if existing is not None :
-                if len(existing['Chapters']) >= tags['Chapters']:
-                    continue
-            else :
-                self.books_count += 1
+            if (ID in self.scraped):
+                continue
+            elif (ID not in book_ids):
+                existing_chapters = 0
+            elif (chapters_count[ID] < tags['Chapters']):
+                existing_chapters = chapters_count[ID]
+            else:
+                continue
+
             book_data = {
                 '_id'           : ID,
                 'Title'         : book.css("a.stitle::text").get(),
@@ -71,6 +153,7 @@ class ffnCrawler(scrapy.Spider):
                 'Author Name'   : book.css("a[href^='/u']::text").get(),
                 'Description'   : book.css("div.z-indent.z-padtop::text").get(),
                 'Tags'          : tags,
+                'Exists'        : False if existing_chapters == 0 else book_ids[ID],
                 'Chapters'      : []
             }
             first_time = book.css('.z-padtop2.xgray > span:nth-of-type(1)::attr(data-xutime)').get()
@@ -82,7 +165,7 @@ class ffnCrawler(scrapy.Spider):
                 book_data['Published'] = int(first_time)
 
             yield scrapy.Request(
-                response.urljoin('/s/' + str(book_data['_id']) + '/1'),
+                response.urljoin('/s/' + str(book_data['_id']) + '/' + str(existing_chapters + 1) ),
                 callback = self.parseChapter,
                 cb_kwargs = {
                     "book"          : book_data,
@@ -96,8 +179,15 @@ class ffnCrawler(scrapy.Spider):
                 callback = self.parse
             )
     def parseChapter(self, response, book):
+        title = response.css('select#chap_select > option[selected]::text').get()
+        if (title is None):
+            title = '1. Chapter 1'
+        title = title.lstrip('123456789')[2:]
         cont = ''.join(response.css('#storytext > p').getall())
-        book['Chapters'].append(cont)
+        book['Chapters'].append({
+            "title"     : title,
+            "content"   : cont
+        })
         next_btn = response.css('#chap_select + button.btn::attr(onclick)').get()
         if (next_btn is not None):
             yield scrapy.Request(
@@ -108,7 +198,8 @@ class ffnCrawler(scrapy.Spider):
                 }
             )
         else:
-            ffn.replace_one({'_id': book['_id']}, book, True )
-            yield {'ID': book['_id'], 'count': self.books_count}
+            with open((settings.crawl['dump_dir'] or "") + str(int(self.start_timestamp)) + "-ffn.jsonl", "a+") as dump_file:
+                dump_file.write( json.dumps(book) + '\n')
+            yield {'ID': book['_id']}
 
 # Run "scrapy crawl ffn" to test
