@@ -29,8 +29,12 @@ class crawl_settings:
                 'password'  : ''
             },
             "crawl" : {
-                'max_pages'       : 1,
-                'dump_dir'        : ''
+                'max_pages'             : 1,
+                'dump_dir'              : '',
+                'blocked'               : {
+                    'ids'       : [],
+                    'authors'   : []
+                },
             }
         })
         url = seperator.join([
@@ -68,6 +72,7 @@ class ffnCrawler(scrapy.Spider):
             lines = ufile.readlines() 
             for fileLine in lines:
                 self.scraped.append(json.loads(fileLine)['_id'])
+        self.current = []
 
     def parse(self, response):
         # Fandom Determination
@@ -105,7 +110,8 @@ class ffnCrawler(scrapy.Spider):
 
         for book in response.css('#content_wrapper_inner > div.z-list'):
             ID = int(book.css("a.stitle::attr(href)").get().split('/')[2])
-            
+            Author_ID = int(book.css("a[href^='/u']::attr(href)").get().split('/')[2])
+
             raw_tags = ''.join(book.css('.z-padtop2.xgray::text,.z-padtop2.xgray *::text').getall()).split(' - ')
             tags = {}
 
@@ -137,7 +143,13 @@ class ffnCrawler(scrapy.Spider):
                             tags['Characters'] = char_set
                         tags['All Characters'] += char_set
             # Existence Check
-            if (ID in self.scraped):
+            if ID in (self.current):
+                continue
+            elif ID in (settings.crawl["blocked"]['ids'] or []):
+                continue
+            elif Author_ID in (settings.crawl["blocked"]['authors'] or []):
+                continue
+            elif (ID in self.scraped):
                 continue
             elif (ID not in book_ids):
                 existing_chapters = 0
@@ -149,7 +161,7 @@ class ffnCrawler(scrapy.Spider):
             book_data = {
                 '_id'           : ID,
                 'Title'         : book.css("a.stitle::text").get(),
-                'Author ID'     : int(book.css("a[href^='/u']::attr(href)").get().split('/')[2]),
+                'Author ID'     : Author_ID,
                 'Author Name'   : book.css("a[href^='/u']::text").get(),
                 'Description'   : book.css("div.z-indent.z-padtop::text").get(),
                 'Tags'          : tags,
@@ -174,6 +186,7 @@ class ffnCrawler(scrapy.Spider):
         pg = int(response.xpath('//*[@id="content_wrapper_inner"]/center[1]/b[1]/text()').get())
         next_pg = response.xpath('//*[@id="content_wrapper_inner"]/center[1]/a[contains(text(),\'Next »\')]').attrib['href']
         if (next_pg is not None) & (pg < self.max_pages):
+            self.start_timestamp = time.time()
             yield scrapy.Request(
                 response.urljoin(next_pg),
                 callback = self.parse
@@ -198,6 +211,7 @@ class ffnCrawler(scrapy.Spider):
                 }
             )
         else:
+            self.current.append(book['_id'])
             with open((settings.crawl['dump_dir'] or "") + str(int(self.start_timestamp)) + "-ffn.jsonl", "a+") as dump_file:
                 dump_file.write( json.dumps(book) + '\n')
             yield {'ID': book['_id']}

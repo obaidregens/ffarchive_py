@@ -1,2 +1,2 @@
-{"db": {"name": "ffonline", "user": "root", "password": ""}, "crawl": {"max_pages": 5, "dump_dir": "C:\\wamp64\\www\\ffonline\\wp-content\\themes\\book-writer\\archiver\\temp\\"}}
-https://www.fanfiction.net/book/Harry-Potter/?&srt=4&r=10
+{"db": {"name": "ffonline", "user": "root", "password": ""}, "crawl": {"max_pages": 3, "dump_dir": "C:\\wamp64\\www\\ffonline\\archiver\\temp\\", "blocked": {"ids": [], "authors": [5454417,8152028,12932750,8899273]}}}
+https://www.fanfiction.net/book/Harry-Potter/?&srt=4&r=10&len=20&t=5
