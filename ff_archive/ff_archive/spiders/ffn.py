@@ -157,7 +157,7 @@ class ffnCrawler(scrapy.Spider):
                 existing_chapters = chapters_count[ID]
             else:
                 continue
-
+            self.current.append(ID)
             book_data = {
                 '_id'           : ID,
                 'Title'         : book.css("a.stitle::text").get(),
@@ -211,7 +211,6 @@ class ffnCrawler(scrapy.Spider):
                 }
             )
         else:
-            self.current.append(book['_id'])
             with open((settings.crawl['dump_dir'] or "") + str(int(self.start_timestamp)) + "-ffn.jsonl", "a+") as dump_file:
                 dump_file.write( json.dumps(book) + '\n')
             yield {'ID': book['_id']}
