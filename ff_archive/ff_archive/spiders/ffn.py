@@ -4,49 +4,10 @@ import time
 import scrapy
 import mysql.connector
 import json
-import pathlib
-class crawl_settings:
-    filename = str(pathlib.Path(__file__).parent.absolute()) + "/.settings"
-    def __init__(self):
-        self.urls = []
-        self.crawl = {}
-        self.db = {}
-        file_is = open(crawl_settings.filename, "r+")
-        raw = file_is.read()
-        if ( len(raw) <= 1):
-            return
-        self.urls = raw.split('\n')
-        file_is.close()
-        settings_dict = json.loads(self.urls.pop(0))
-        self.crawl = settings_dict['crawl']
-        self.db = settings_dict['db']
-    def sample(self):
-        seperator = "\n"
-        json_settings = json.dumps({
-            "db"    : {
-                "name"      : "ffonline",
-                "user"      : 'root',
-                'password'  : ''
-            },
-            "crawl" : {
-                'max_pages'             : 1,
-                'dump_dir'              : '',
-                'blocked'               : {
-                    'ids'       : [],
-                    'authors'   : []
-                },
-            }
-        })
-        url = seperator.join([
-            "https://www.fanfiction.net/book/Harry-Potter/?&srt=4&r=10"
-        ])
-        f = open(crawl_settings.filename, "w")
-        f.write(json_settings + seperator + url)
-        f.close()
+import ff_archive.spiders.crawl_settings as crawl_settings
 
+settings = crawl_settings.settings()
 
-
-settings = crawl_settings()
 sql_connection = mysql.connector.connect(
   host = "localhost",
   user = settings.db["user"],
