@@ -22,7 +22,6 @@ class ffnCrawler(scrapy.Spider):
     start_urls = settings.urls or []
 
     def __init__(self, name=None, **kwargs):
-        self.start_timestamp = time.time()
         _dir = settings.crawl['dump_dir'] or ""
         if (_dir == ''):
             _dir = os.getcwd()
@@ -147,7 +146,6 @@ class ffnCrawler(scrapy.Spider):
         pg = int(response.xpath('//*[@id="content_wrapper_inner"]/center[1]/b[1]/text()').get())
         next_pg = response.xpath('//*[@id="content_wrapper_inner"]/center[1]/a[contains(text(),\'Next »\')]').attrib['href']
         if (next_pg is not None) & (pg < self.max_pages):
-            self.start_timestamp = time.time()
             yield scrapy.Request(
                 response.urljoin(next_pg),
                 callback = self.parse
@@ -172,7 +170,7 @@ class ffnCrawler(scrapy.Spider):
                 }
             )
         else:
-            with open((settings.crawl['dump_dir'] or "") + str(int(self.start_timestamp)) + "-ffn.jsonl", "a+") as dump_file:
+            with open((settings.crawl['dump_dir'] or "") + str(int(time.time())) + "-ffn.jsonl", "a+") as dump_file:
                 dump_file.write( json.dumps(book) + '\n')
             yield {'ID': book['_id']}
 

@@ -26,8 +26,8 @@ for code_tuple in db.fetchall():
     user_codes[userid] = code_tuple[1]
 def verify_connection(user):
     db.execute(
-        "UPDATE user_connections SET status = %s,link_timestamp = %d WHERE connection_user = %s AND connection_from = %s AND status = %s",
-        ['verified',_t,user,user,'ffn','unverified']
+        "UPDATE user_connections SET status = %s,link_timestamp = %s WHERE connection_user = %s AND connection_from = %s AND status = %s",
+        ['verified', str(_t), user, 'ffn', 'unverified']
     )
     sql_connection.commit()
 
@@ -43,7 +43,6 @@ class ffnVerification(scrapy.Spider):
             cookies = settings.creds["ffn"]["cookies"]
         )
     def inbox(self, response):
-        print(response.text)
         if (response.css('.gui_warning > a[href^="/login"]').get() is not None):
             yield scrapy.Request(
                 response.urljoin( self.login_url ),
@@ -57,11 +56,16 @@ class ffnVerification(scrapy.Spider):
                 cookies = settings.creds["ffn"]["cookies"]
             )
     def conversation(self, response):
-        last_msg = response.css('.round8.bubbledRight:last-child')
+        last_msg = response.css('.round8.bubbledRight')[-1]
         code = last_msg.xpath('img[1]/following-sibling::text()').get()
-        Author_ID = int(response.css('#gui_table2i > tbody > tr:nth-child(2) > td:nth-child(2) > a:nth-of-type(1)::attr(href)').get()[3:].rstrip('/'))
-        if (Author_ID in user_codes & user_codes[Author_ID] == code ):
-            verify_connection(Author_ID)
+        Author_ID = response.css('#gui_table2i > tbody > tr:nth-child(2) > td:nth-child(2) > a:nth-of-type(1)::attr(href)').get()[3:].rstrip('/')
+        if (Author_ID in user_codes ):
+            print('Request for user ID exists')
+            if (user_codes[Author_ID] == code):
+                print('Code Matches')
+                verify_connection(Author_ID)
+            else:
+                print('Code Invalid')
 
     def set_new_cookies(self, response):
         settings.creds["ffn"]["cookies"] = response.headers.getlist('Set-Cookie')
