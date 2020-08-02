@@ -2,7 +2,7 @@ import scrapy
 import mysql.connector
 import json
 import time
-import ff_verification.spiders.crawl_settings as crawl_settings
+import ff_archive.spiders.crawl_settings as crawl_settings
 settings = crawl_settings.settings()
 
 # SQL get unverified
