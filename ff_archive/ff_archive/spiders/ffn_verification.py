@@ -16,18 +16,41 @@ db = sql_connection.cursor()
 
 db.execute("SELECT verification_ID, connection_user FROM user_connections WHERE connection_from = 'ffn' AND status = 'unverified'")
 user_v_ids = dict(db.fetchall())
-db.execute("SELECT ID, code, issued FROM verification_codes WHERE ID IN (" + ",".join(map(str,user_v_ids.keys())) + ")")
 user_codes = {}
-_t = int(time.time())
-for code_tuple in db.fetchall():
-    if _t - int(code_tuple[2]) > (60 * 30):
-        continue
-    userid = user_v_ids[code_tuple[0]]
-    user_codes[userid] = code_tuple[1]
+if (len(user_v_ids) > 0):
+    db.execute("SELECT ID, code, issued FROM verification_codes WHERE ID IN (" + ",".join(map(str,user_v_ids.keys())) + ")")
+    _t = int(time.time())
+    for code_tuple in db.fetchall():
+        if _t - int(code_tuple[2]) > (60 * 30):
+            continue
+        userid = user_v_ids[code_tuple[0]]
+        user_codes[userid] = code_tuple[1]
+
 def verify_connection(user):
     db.execute(
-        "UPDATE user_connections SET status = %s,link_timestamp = %s WHERE connection_user = %s AND connection_from = %s AND status = %s",
-        ['verified', str(_t), user, 'ffn', 'unverified']
+        "SELECT * FROM user_connections WHERE connection_user = %s AND connection_from = %s AND status = %s",
+        [user, 'ffn', 'unverified']
+    )
+    connection_row = db.fetchone()
+    db.execute(
+        "UPDATE user_connections SET status = %s,link_timestamp = %s WHERE ID = %s",
+        ['verified', str(_t),str(connection_row['ID'])]
+    )
+    sql_connection.commit()
+    db.execute(
+        "SELECT * FROM wp_postmeta WHERE meta_key = 'ffn_author_id' AND meta_value = %s",
+        [user]
+    )
+    metas = db.fetchall()
+    if (len(metas) < 1):
+        return
+    book_ids = []
+    for meta in metas:
+        book_ids.append(str(meta["post_id"]))
+    
+    db.execute(
+        "UPDATE wp_posts SET post_author = %s WHERE ID IN(" + ",".join(['%s'] * len(book_ids)) + ")",
+        [str(connection_row['user_id'])] + map(str,book_ids)
     )
     sql_connection.commit()
 
@@ -55,6 +78,7 @@ class ffnVerification(scrapy.Spider):
                 callback = self.conversation,
                 cookies = settings.creds["ffn"]["cookies"]
             )
+            
     def conversation(self, response):
         last_msg = response.css('.round8.bubbledRight')[-1]
         code = last_msg.xpath('img[1]/following-sibling::text()').get()
@@ -71,8 +95,8 @@ class ffnVerification(scrapy.Spider):
         settings.creds["ffn"]["cookies"] = response.headers.getlist('Set-Cookie')
         settings.save()
         yield scrapy.Request(
-            response.urljoin( self.login_url ),
-            callback = self.login,
+            response.urljoin( self.inbox_url ),
+            callback = self.inbox,
             cookies = settings.creds["ffn"]["cookies"]
         )
     def login(self, response):
