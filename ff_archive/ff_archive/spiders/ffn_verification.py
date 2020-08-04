@@ -21,7 +21,7 @@ if (len(user_v_ids) > 0):
     db.execute("SELECT ID, code, issued FROM verification_codes WHERE ID IN (" + ",".join(map(str,user_v_ids.keys())) + ")")
     _t = int(time.time())
     for code_tuple in db.fetchall():
-        if _t - int(code_tuple[2]) > (60 * 30):
+        if _t - int(code_tuple[2]) > (60 * 80):
             continue
         userid = user_v_ids[code_tuple[0]]
         user_codes[userid] = code_tuple[1]
