@@ -79,7 +79,6 @@ class ffnCrawler(scrapy.Spider):
                 tags['Genre'] = raw_tags.pop(1).split('/')
             if 'Complete' == raw_tags[-1]:
                 tags['Status'] = raw_tags.pop(-1)
-            next_book = False
             for tag_is in raw_tags:
                 if 'Updated: ' in tag_is or 'Published: ' in tag_is:
                     pass
@@ -87,11 +86,6 @@ class ffnCrawler(scrapy.Spider):
                     tag_is_arr = tag_is.split(': ')
                     if tag_is_arr[0] in ['Chapters','Words','Reviews','Favs','Follows']:
                         tag_is_arr[1] = int(tag_is_arr[1].replace(',',''))
-                        limits = settings.crawl['filter'][tag_is_arr[0]] or []
-                        # Filter
-                        if (tag_is_arr[1] < (limits[0] or 0) or tag_is_arr[1] > (limits[1] or 90000000000) ):
-                            next_book = True
-                            break
                     tags[tag_is_arr[0]] = tag_is_arr[1]
                 else:
                     raw_characters = tag_is.split(']')
@@ -106,6 +100,18 @@ class ffnCrawler(scrapy.Spider):
                         else:
                             tags['Characters'] = char_set
                         tags['All Characters'] += char_set
+            # Filter
+            next_book = False
+            for int_tag in ['Chapters','Words','Reviews','Favs','Follows']:
+                limits = settings.crawl['filter'][int_tag] or []
+                lfrom = limits[0] or 0
+                lto = limits[1] or 90000000000
+                if (int_tag not in tags):
+                    tags[int_tag] = 0
+                if (tags[int_tag] < lfrom or tags[int_tag] > lto ):
+                    next_book = True
+                    break
+
             # Existence Check
             if next_book == True:
                 continue
