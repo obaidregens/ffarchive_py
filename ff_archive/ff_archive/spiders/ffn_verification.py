@@ -24,21 +24,24 @@ if (len(user_v_ids) > 0):
         if _t - int(code_tuple[2]) > (60 * 80):
             continue
         userid = user_v_ids[code_tuple[0]]
-        user_codes[userid] = code_tuple[1]
+        user_codes[userid] = {
+            "ID": code_tuple[0],
+            "code": code_tuple[1],
+        }
 
-def verify_connection(user):
+def verify_connection(user,code_ID):
     db.execute(
-        "SELECT * FROM user_connections WHERE connection_user = %s AND connection_from = %s AND status = %s",
-        [user, 'ffn', 'unverified']
+        "SELECT ID,user_id FROM user_connections WHERE connection_user = %s AND connection_from = %s AND status = %s AND verification_ID = %s",
+        [user, 'ffn', 'unverified',code_ID]
     )
     connection_row = db.fetchone()
     db.execute(
         "UPDATE user_connections SET status = %s,link_timestamp = %s WHERE ID = %s",
-        ['verified', str(_t),str(connection_row['ID'])]
+        ['verified', str(_t),str(connection_row[0])]
     )
     sql_connection.commit()
     db.execute(
-        "SELECT * FROM wp_postmeta WHERE meta_key = 'ffn_author_id' AND meta_value = %s",
+        "SELECT post_id FROM wp_postmeta WHERE meta_key = 'ffn_author_id' AND meta_value = %s",
         [user]
     )
     metas = db.fetchall()
@@ -46,11 +49,11 @@ def verify_connection(user):
         return
     book_ids = []
     for meta in metas:
-        book_ids.append(str(meta["post_id"]))
+        book_ids.append(str(meta[0]))
     
     db.execute(
         "UPDATE wp_posts SET post_author = %s WHERE ID IN(" + ",".join(['%s'] * len(book_ids)) + ")",
-        [str(connection_row['user_id'])] + map(str,book_ids)
+        [str(connection_row[1])] + map(str,book_ids)
     )
     sql_connection.commit()
 
@@ -85,9 +88,9 @@ class ffnVerification(scrapy.Spider):
         Author_ID = response.css('#gui_table2i > tbody > tr:nth-child(2) > td:nth-child(2) > a:nth-of-type(1)::attr(href)').get()[3:].rstrip('/')
         if (Author_ID in user_codes ):
             print('Request for user ID exists')
-            if (user_codes[Author_ID] == code):
+            if (user_codes[Author_ID]["code"] == code):
                 print('Code Matches')
-                verify_connection(Author_ID)
+                verify_connection(Author_ID, user_codes[Author_ID]["ID"])
             else:
                 print('Code Invalid')
 
