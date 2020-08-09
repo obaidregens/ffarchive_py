@@ -156,8 +156,9 @@ class ffnCrawler(scrapy.Spider):
                 }
             )
         pg = int(response.xpath('//*[@id="content_wrapper_inner"]/center[1]/b[1]/text()').get())
-        next_pg = response.xpath('//*[@id="content_wrapper_inner"]/center[1]/a[contains(text(),\'Next »\')]').attrib['href']
-        if (next_pg is not None) & (pg < self.max_pages):
+        next_pg_attr = response.xpath('//*[@id="content_wrapper_inner"]/center[1]/a[contains(text(),\'Next »\')]').attrib
+        if ("href" in next_pg_attr) & (pg < self.max_pages):
+            next_pg = next_pg_attr['href']
             yield scrapy.Request(
                 response.urljoin(next_pg),
                 callback = self.parse
