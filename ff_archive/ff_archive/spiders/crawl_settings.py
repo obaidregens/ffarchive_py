@@ -61,6 +61,15 @@ class settings:
                         "fknn": "b",
                         "funn": "c"
                     }
+                },
+                "ffn-authorPM": {
+                    "email": "norig98466@brosj.net",
+                    "password": "fnjewknmfkmlkewr32u8jr8093j0940932",
+                    "cookies": {
+                        "finn": "553b2c2346349cc92f98f9c677b5d76dea4646ad27e74bb6e8c4a33366e87c0d",
+                        "fknn": "e51518a5aa16709c6104e102e330d405a4cebb13bf0fb5d0d38f5b40d63d4a00",
+                        "funn": "norig98466"
+                    }
                 }
             }
         })

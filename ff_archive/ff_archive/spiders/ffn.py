@@ -31,7 +31,8 @@ class ffnCrawler(scrapy.Spider):
             for fileLine in lines:
                 self.scraped.append(json.loads(fileLine)['_id'])
         self.current = []
-
+    def book_ids_from_links(self,book_link):
+        return int(book_link.split('/')[2])
     def parse(self, response):
         # Fandom Determination
         type_img = response.xpath('//*[@id="content_wrapper_inner"]/img[1]').attrib['src']
@@ -46,9 +47,7 @@ class ffnCrawler(scrapy.Spider):
             print('Unknown type')
             exit(0)
         # Get Existing
-        def book_ids_from_links(book_link):
-            return int(book_link.split('/')[2])
-        all_book_ids = list(map( book_ids_from_links, response.css('#content_wrapper_inner > div.z-list > a.stitle::attr(href)').getall() ))
+        all_book_ids = list(map( self.book_ids_from_links, response.css('#content_wrapper_inner > div.z-list > a.stitle::attr(href)').getall() ))
         
         db.execute("SELECT post_id,meta_value FROM wp_postmeta WHERE meta_key = 'ffn_book_id' AND meta_value IN (" + ','.join(['%s' for i in range(len(all_book_ids))]) + ")", all_book_ids )
         book_ids = {}
@@ -155,14 +154,16 @@ class ffnCrawler(scrapy.Spider):
                     "book"          : book_data,
                 }
             )
-        pg = int(response.xpath('//*[@id="content_wrapper_inner"]/center[1]/b[1]/text()').get())
-        next_pg_attr = response.xpath('//*[@id="content_wrapper_inner"]/center[1]/a[contains(text(),\'Next »\')]').attrib
-        if ("href" in next_pg_attr) & (pg < self.max_pages):
-            next_pg = next_pg_attr['href']
-            yield scrapy.Request(
-                response.urljoin(next_pg),
-                callback = self.parse
-            )
+
+        if (response.xpath('//*[@id="content_wrapper_inner"]/center[1]/b[1]/text()').get() is not None):
+            pg = int(response.xpath('//*[@id="content_wrapper_inner"]/center[1]/b[1]/text()').get())
+            next_pg_attr = response.xpath('//*[@id="content_wrapper_inner"]/center[1]/a[contains(text(),\'Next »\')]').attrib
+            if ("href" in next_pg_attr) & (pg < self.max_pages):
+                next_pg = next_pg_attr['href']
+                yield scrapy.Request(
+                    response.urljoin(next_pg),
+                    callback = self.parse
+                )
     def parseChapter(self, response, book):
         title = response.css('select#chap_select > option[selected]::text').get()
         if (title is None):
