@@ -26,6 +26,7 @@ rating_map = {
     'T'         : 'Teen & Up',
     'M'         : 'Mature'
 }
+a_imported = []
 def find_fandom(fandom):
     sql = "SELECT fandom,category,characters FROM ffnMap WHERE fandom = ?"
     liteDB.execute(sql,[fandom])
@@ -251,6 +252,16 @@ def insertStory(story):
         metaVal.append((storyID,'word-count',totalWords))
     metaSql = "INSERT INTO wp_postmeta (post_id,meta_key,meta_value) VALUES (%s, %s, %s)"
     db.executemany(metaSql,metaVal)
+
+    # Now Let's add a notification if all users stories have been done.
+    a_imported.append(str(story["_id"]))
+    if len(set(authorIds[str(author_ID)]["include"]) - set(a_imported)) < 1:
+        db.execute(
+            """
+            INSERT INTO notifications (user_id,notification_type,type_of,type_of_id,type_by,type_by_id,email_status,timestamp)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",
+            [user_id,'stories_imported','user',user_id,'ffn_user',author_ID,'none',time.time()]
+        )
     sql_connection.commit()
 def sqlPlaceholder(l):
     return ",".join(['%s'] * l )
@@ -343,7 +354,6 @@ class ffnImporter(scrapy.Spider):
                 }
             )
         else:
-            pass
             insertStory(storyData)
     def closed(self, reason):
         updateTermsCount()
