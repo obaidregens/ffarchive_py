@@ -206,7 +206,10 @@ def insertStory(story):
             fandomID = ensureTerm(fandom["fandom"],'category',categoryID)
             connectTerm(storyID,fandomID)
             for characterName in characterOfFandoms.get(fandomName,[]):
-                characterID = ensureTerm(characterName,'character',fandomID)
+                if characterName == "OC":
+                    characterID = ensureTerm(characterName,'character',0)
+                else:
+                    characterID = ensureTerm(characterName,'character',fandomID)
                 characterIdOfName[characterName] = characterID
                 connectTerm(storyID,characterID)
         # Tags - Language
