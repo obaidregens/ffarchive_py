@@ -229,12 +229,17 @@ def insertStory(story):
             insertPairing(storyID,relationshipCharacters)
         updateImport = """
         UPDATE import_stories
-        SET import_status='imported', story_id=%s, import_time=%s
+        SET import_status='live', story_id=%s, import_time=%s
         WHERE import_from='ffn' AND import_story=%s 
         """
         db.execute(updateImport,[storyID,int(time.time()),story["_id"]])
     else:
         storyID = int(story["Existing"])
+        db.execute("""
+        UPDATE wp_posts
+        SET post_modified=%s, post_modified_gmt=%s
+        WHERE ID=%s
+        """,[modified,modified,storyID])
         metaVal = []
 
     # Chapter
@@ -270,6 +275,20 @@ def insertStory(story):
             [user_id,'stories_imported','user',user_id,'ffn_user',author_ID,'none',time.time()]
         )
     sql_connection.commit()
+    if story["Existing"] != False:
+        db.execute("""
+        SELECT SUM(wp_postmeta.meta_value) as c FROM wp_postmeta
+        INNER JOIN wp_posts ON wp_posts.ID = wp_postmeta.post_id
+        WHERE wp_postmeta.meta_key = 'word-count'
+        AND wp_posts.post_parent = %s
+        """,[storyID])
+        word_count = int(db.fetchone()[0])
+        db.execute("""
+        UPDATE wp_postmeta
+        SET meta_value = %s
+        WHERE post_id=%s AND meta_key="word-count"
+        """,[word_count,storyID])
+        sql_connection.commit()
 def sqlPlaceholder(l):
     return ",".join(['%s'] * l )
 def insertPairing(storyID,characters):
@@ -314,7 +333,7 @@ def dbInsert(table,insertData):
     sql_connection.commit()
     return db.lastrowid
 
-db.execute("SELECT import_user,user_id,import_story FROM import_stories WHERE import_status = %s",['pending'])
+db.execute("SELECT import_user,user_id,import_story FROM import_stories WHERE import_status IN (%s,%s)",['pending','live'])
 authorIds = {}
 for row in db.fetchall():
     if not str(row[0]) in authorIds:
@@ -342,10 +361,14 @@ class ffnImporter(scrapy.Spider):
         ffnIds = {}
         storyChaptersExisting = {}
         if (len(storyIds) > 0):
-            db.execute("SELECT post_id,meta_value FROM wp_postmeta WHERE meta_key = 'ffn_book_id' AND post_id IN(" + sqlPlaceholder(len(storyIds)) + ")", storyIds )
+            storyIdsPlace = sqlPlaceholder(len(storyIds))
+            db.execute(
+                "SELECT story_id,import_story FROM import_stories " +
+                "WHERE story_id IN(" + storyIdsPlace + ")"
+            , storyIds )
             ffnIds = dict(db.fetchall())
 
-            db.execute("SELECT post_parent FROM wp_posts WHERE post_parent IN (" + sqlPlaceholder(len(storyIds)) + ")",storyIds)
+            db.execute("SELECT post_parent FROM wp_posts WHERE post_parent IN (" + storyIdsPlace + ")",storyIds)
             for tup in db.fetchall():
                 theID = int(ffnIds[tup[0]])
                 storyChaptersExisting[theID] = storyChaptersExisting.get(theID,0) + 1
@@ -355,11 +378,11 @@ class ffnImporter(scrapy.Spider):
             storyData["Author ID"] = Author_ID
             storyData["Author Name"] = Author_Name
             chapterStartAt = (storyChaptersExisting.get(int(storyData["_id"]),0)) + 1
-            storyData["Existing"] = storyIdsLookup.get(str(storyData["_id"]),False)
+            storyData["Existing"] = storyIdsLookup.get(int(storyData["_id"]),False)
             # The support for importing new chapters does exist, but that won't be used for now.
             # Thus the condition below
-            if (storyData["Existing"] != False):
-                continue
+            # if (storyData["Existing"] != False):
+            #     continue
             storyData["chapterStartAt"] = chapterStartAt
             if canImport(Author_ID,storyData["_id"]) == False:
                 continue
