@@ -39,6 +39,15 @@ def verify_connection(user,code_ID):
         "UPDATE user_connections SET status = %s,link_timestamp = %s WHERE ID = %s",
         ['verified', str(_t),str(connection_row[0])]
     )
+    db.execute(
+        """
+        INSERT INTO notifications
+            (user_id,notification_type,type_of,type_of_id,type_by,type_by_id,email_status,timestamp)
+        VALUES
+            (%s, %s, %s, %s, %s, %s, %s, %s)
+        """,
+        [connection_row[1],'account_verified','user',connection_row[1],'ffn_user',user,'none',time.time()]
+    )
     sql_connection.commit()
     db.execute(
         "SELECT post_id FROM wp_postmeta WHERE meta_key = 'ffn_author_id' AND meta_value = %s",
@@ -54,12 +63,6 @@ def verify_connection(user,code_ID):
     db.execute(
         "UPDATE wp_posts SET post_author = %s WHERE ID IN(" + ",".join(['%s'] * len(book_ids)) + ")",
         [str(connection_row[1])] + map(str,book_ids)
-    )
-    db.execute(
-        """
-        INSERT INTO notifications (user_id,notification_type,type_of,type_of_id,type_by,type_by_id,email_status,timestamp)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",
-        [connection_row[1],'account_verified','user',connection_row[1],'ffn_user',user,'none',time.time()]
     )
     sql_connection.commit()
 

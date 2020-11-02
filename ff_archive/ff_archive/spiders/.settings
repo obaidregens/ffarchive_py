@@ -1,2 +1,66 @@
-{"db": {"name": "ffonline", "user": "root", "password": ""}, "crawl": {"max_pages": 20, "dump_dir": "", "blocked": {"ids": [], "authors": []},"filter": {"Favs": [0, 5000000000000000], "Chapters": [0, 5000000000000000], "Words": [0, 5000000000000000], "Reviews": [0, 5000000000000000], "Follows": [0, 5000000000000000]}}, "creds": {"ffn": {"email": "1", "password": "cefe", "cookies": {"finn": "8b8e975eee8e75ef4fd31dc2660c29abbf98847849e2822aef3c4ec06a292179", "fknn": "4961361bc5f3b08c90227d946f467d97b7334cc642851c5742726d3682d481b7", "funn": "gofojom703"}},"ffn-authorPM": {"email": "norig98466@brosj.net", "password": "fnjewknmfkmlkewr32u8jr8093j0940932", "cookies": {"finn": "553b2c2346349cc92f98f9c677b5d76dea4646ad27e74bb6e8c4a33366e87c0d", "fknn": "e51518a5aa16709c6104e102e330d405a4cebb13bf0fb5d0d38f5b40d63d4a00", "funn": "norig98466"}}}}
-https://fanfiction.net/book/Harry-Potter/
+{
+    "db": {
+        "name": "ffonline",
+        "user": "root",
+        "password": ""
+    },
+    "crawl": {
+        "max_pages": 20,
+        "dump_dir": "",
+        "blocked": {
+            "ids": [],
+            "authors": []
+        },
+        "filter": {
+            "Favs": [
+                0,
+                5000000000000000
+            ],
+            "Chapters": [
+                0,
+                5000000000000000
+            ],
+            "Words": [
+                0,
+                5000000000000000
+            ],
+            "Reviews": [
+                0,
+                5000000000000000
+            ],
+            "Follows": [
+                0,
+                5000000000000000
+            ]
+        }
+    },
+    "creds": {
+        "ffn": {
+            "email": "1",
+            "password": "cefe",
+            "cookies": {
+                "finn": "8b8e975eee8e75ef4fd31dc2660c29abbf98847849e2822aef3c4ec06a292179",
+                "fknn": "4961361bc5f3b08c90227d946f467d97b7334cc642851c5742726d3682d481b7",
+                "funn": "gofojom703"
+            }
+        },
+        "ffn-authorPM": {
+            "email": "norig98466@brosj.net",
+            "password": "fnjewknmfkmlkewr32u8jr8093j0940932",
+            "cookies": {
+                "finn": "553b2c2346349cc92f98f9c677b5d76dea4646ad27e74bb6e8c4a33366e87c0d",
+                "fknn": "e51518a5aa16709c6104e102e330d405a4cebb13bf0fb5d0d38f5b40d63d4a00",
+                "funn": "norig98466"
+            }
+        },
+        "ffn-authorPM2": {
+            "email": "libay27118@adeata.com",
+            "password": "fnoj3wg9834h9f43hj98h98",
+            "cookies": {
+                "finn": "3a7076b1f20573efe68314f4da115e6df37b76bbd297c8a709c0196a0400e8f6",
+                "fknn": "43e00bfa7abd7e853e53ee4332bb798aaea5f2c64dc6d5ecace25636bacce2fb",
+                "funn": "libay"
+            }
+        }
+    }
+}

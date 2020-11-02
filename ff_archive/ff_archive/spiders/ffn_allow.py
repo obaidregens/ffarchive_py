@@ -5,7 +5,6 @@ import time
 import math
 import ff_archive.spiders.crawl_settings as crawl_settings
 settings = crawl_settings.settings()
-
 # SQL get unverified
 sql_connection = mysql.connector.connect(
     host = "localhost",
@@ -15,41 +14,62 @@ sql_connection = mysql.connector.connect(
 )
 db = sql_connection.cursor()
 
-letter = """"
+def sqlPlaceholder(l):
+    return ",".join(['%s'] * l )
+def dbInsert(table,insertData):
+    sql = "INSERT INTO " + table + " (" + ",".join(insertData.keys()) + ")" + " VALUES (" + sqlPlaceholder(len(insertData)) + ")"
+    db.execute(sql,list( insertData.values()))
+    sql_connection.commit()
+    return db.lastrowid
 
+letter = """
+The first Letter
+Second Line
+
+Gap Line
+
+mon.mon
 """
-letter_subject = ""
+letter_subject = "The first Subject"
 
 class ffnAllowMessages(scrapy.Spider):
     name = "ffn_outreach"
-    start_urls = [url + "?&srt=1&lan=1&r=10&t=4" for url in [
-        "https://www.fanfiction.net/book/Harry-Potter/",
-        "https://www.fanfiction.net/anime/Naruto/",
-        "https://www.fanfiction.net/book/Twilight/",
-        "https://www.fanfiction.net/anime/Hetalia-Axis-Powers/",
-        "https://www.fanfiction.net/anime/Inuyasha/",
-        "https://www.fanfiction.net/tv/Supernatural/"
+    start_urls = ["https://www.fanfiction.net/" + url + "?&srt=1&lan=1&r=10&t=4" for url in [
+        "book/Harry-Potter/",
+        # "anime/Naruto/",
+        # "book/Twilight/",
+        # "anime/Hetalia-Axis-Powers/",
+        # "anime/Inuyasha/",
+        # "tv/Supernatural/"
     ]]
-    cookies = settings.creds["ffn"]["cookies"]
+    cookies = settings.creds["ffn-authorPM"]["cookies"]
     max_pages = 10
     def parse(self, response):
-        for book in response.css('#content_wrapper_inner > div.z-list'):
-            Author_ID = int(book.css("a[href^='/u']::attr(href)").get().split('/')[2])
-            yield response.follow(
-                "/u/" + str(Author_ID),
-                callback = self.parseProfile,
-                cb_kwargs = {
-                    "uid"           : Author_ID
-                }
-            )
-        pg = int(response.xpath('//*[@id="content_wrapper_inner"]/center[1]/b[1]/text()').get())
-        next_pg_attr = response.xpath('//*[@id="content_wrapper_inner"]/center[1]/a[contains(text(),\'Next »\')]').attrib
-        if ("href" in next_pg_attr) & (pg < self.max_pages):
-            next_pg = next_pg_attr['href']
-            yield scrapy.Request(
-                response.urljoin(next_pg),
-                callback = self.parse
-        )
+        pass
+        # yield response.follow(
+        #     "/u/" + str(11649582),
+        #     callback = self.parseProfile,
+        #     cb_kwargs = {
+        #         "uid"           : 11649582
+        #     }
+        # )
+        # for book in response.css('#content_wrapper_inner > div.z-list'):
+            # Author_ID = int(book.css("a[href^='/u']::attr(href)").get().split('/')[2])
+            # yield response.follow(
+            #     "/u/" + str(Author_ID),
+            #     callback = self.parseProfile,
+            #     cb_kwargs = {
+            #         "uid"           : Author_ID
+            #     }
+            # )
+        # pg = int(response.xpath('//*[@id="content_wrapper_inner"]/center[1]/b[1]/text()').get())
+        # next_pg_attr = response.xpath('//*[@id="content_wrapper_inner"]/center[1]/a[contains(text(),\'Next »\')]').attrib
+        # if ("href" in next_pg_attr) & (pg < self.max_pages):
+        #     next_pg = next_pg_attr['href']
+        #     yield scrapy.Request(
+        #         response.urljoin(next_pg),
+        #         callback = self.parse
+        #     )
     def parseProfile(self, response, uid):
         ratingNums = {
             "K": 1,
@@ -106,17 +126,22 @@ class ffnAllowMessages(scrapy.Spider):
             # Tags Collected
             if (tags_dict["updated"] > dataSend["newest"].get("updated",0)):
                 dataSend["newest"] = tags_dict
-            if (tags_dict["favs"] > dataSend["top_favs"].get("favs",0)):
+            if (tags_dict.get("favs",0) > dataSend["top_favs"].get("favs",0)):
                 dataSend["top_favs"] = tags_dict
             if (tags_dict["published"] < dataSend["oldest"].get("published",math.inf)):
                 dataSend["oldest"] = tags_dict
             fandoms_count[tags_dict["fandom"]] = fandoms_count.get(tags_dict["fandom"],0) + 1 
+
         for fandom,count in fandoms_count.items():
             if "most_fandom" not in dataSend["data"]:
                 dataSend["data"]["most_fandom"] = fandom
                 continue
             if count > fandoms_count[dataSend["data"]["most_fandom"]]:
                 dataSend["data"]["most_fandom"] = fandom
+        for attr in ["newest","oldest","top_favs"]:
+            if dataSend[attr] == {}:
+                dataSend[attr] = tags_dict
+
         yield response.follow(
             "/pm2/post.php?uid=" + str(uid),
             callback = self.sendMessage,
@@ -140,10 +165,10 @@ class ffnAllowMessages(scrapy.Spider):
             "total_rating": total["rating"],
             "top_favs_fandom": top_favs["fandom"],
             "top_favs_words": top_favs["words"],
-            "top_favs_reviews": top_favs["reviews"],
+            "top_favs_reviews": top_favs.get('reviews',0),
             "top_favs_chapters": top_favs["chapters"],
-            "top_favs_favs": top_favs["favs"],
-            "top_favs_follows": top_favs["follows"],
+            "top_favs_favs": top_favs.get("favs",0),
+            "top_favs_follows": top_favs.get("follows",0),
             "top_favs_rating": top_favs["rating"],
             "top_favs_language": top_favs["language"],
             "top_favs_genre": top_favs["genre"],
@@ -154,9 +179,8 @@ class ffnAllowMessages(scrapy.Spider):
             "newest_published": newest["published"],
             "newest_updated": newest["published"]
         }
-        sql = "INSERT INTO ffn_outreach (" + ",".join(insertItems.keys()) + ")" + "VALUES (" + ",".join(['%s'] * len(insertItems)) + ")"
-        db.execute(sql,insertItems.values())
-        sql_connection.commit()
+        dbInsert("ffn_outreach",insertItems)
+        print(response.css('#fpost input,#fpost textarea'))
         return scrapy.FormRequest.from_response(
             response,
             formname = 'fpost',
