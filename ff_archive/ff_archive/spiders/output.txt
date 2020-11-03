@@ -1,0 +1,293 @@
+2020-11-02 21:08:14 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:08:14 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:08:14 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:08:14 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-get.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:09:16 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:09:16 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:09:16 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:09:16 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:15:25 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:15:25 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:15:25 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:15:25 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:15:54 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:15:54 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:15:54 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:15:54 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:16:52 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:16:52 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:16:52 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:16:53 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:17:33 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:17:33 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:17:33 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:17:33 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:17:54 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:17:54 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:17:54 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:17:54 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:18:23 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:18:23 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:18:23 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:18:23 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:18:38 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:18:38 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:18:38 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:18:38 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:18:54 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:18:54 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:18:54 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:18:54 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:19:23 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:19:23 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:19:23 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:19:23 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:19:52 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:19:52 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:19:52 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:19:52 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:20:18 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:20:18 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:20:18 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:20:18 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:32:30 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:32:30 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:32:30 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:32:30 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:32:36 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:32:36 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:32:36 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:32:36 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:33:03 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:33:03 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:33:03 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:33:03 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:34:19 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:34:19 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:34:19 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:34:19 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:35:30 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:35:30 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:35:30 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:35:30 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:36:28 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:36:28 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:36:28 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:36:28 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:38:16 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:38:16 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:38:16 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:38:16 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:48:21 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:48:21 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:48:21 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:48:21 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:57:53 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:57:53 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:57:53 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:57:53 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 21:59:04 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 21:59:04 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 21:59:04 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 21:59:04 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 22:00:27 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 22:00:27 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 22:00:27 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 22:00:36 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 22:00:36 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 22:00:36 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 22:00:36 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 22:03:57 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 22:03:57 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 22:03:57 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 22:03:57 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 22:05:00 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 22:05:00 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 22:05:00 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 22:05:01 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 22:05:47 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 22:05:47 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 22:05:47 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 22:05:47 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 23:48:06 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 23:48:06 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 23:48:06 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 23:48:06 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-02 23:50:08 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-02 23:50:08 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-02 23:50:08 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-02 23:50:08 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
