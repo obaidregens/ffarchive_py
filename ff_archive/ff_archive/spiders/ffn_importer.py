@@ -26,6 +26,7 @@ rating_map = {
     'T'         : 'Teen & Up',
     'M'         : 'Mature'
 }
+
 a_imported = []
 def find_fandom(fandom):
     sql = "SELECT fandom,category,characters FROM ffnMap WHERE fandom = ?"
@@ -107,11 +108,16 @@ def updateTermsCount():
 def parseStory(storyBlock):
     ID = int(storyBlock.css("a.stitle::attr(href)").get().split('/')[2])
 
-    raw_tags = ''.join(storyBlock.css('.z-padtop2.xgray::text,.z-padtop2.xgray *::text').getall()).split(' - ')
-    tags = {}
+    raw_tags_string = ''.join(storyBlock.css('.z-padtop2.xgray::text,.z-padtop2.xgray *::text').getall())
 
-    if (raw_tags.pop(0) == "Crossover"):
-        raw_tags.pop(0)
+    # Remove Crossover
+    if raw_tags_string[:12] == "Crossover - ":
+        raw_tags_string = raw_tags_string[12:]
+    # Remove Fandom
+    raw_tags_string = raw_tags_string[len(storyBlock.attrib["data-category"]) + len(" - "):]
+
+    raw_tags = raw_tags_string.split(' - ')
+    tags = {}
 
     tags['Language'] = raw_tags.pop(1)
     if 'Chapters: ' not in raw_tags[1]:
@@ -242,7 +248,6 @@ def insertStory(story):
         WHERE ID=%s
         """,[modified,modified,storyID])
         metaVal = []
-    print(story["Reimport"])
     if story["Reimport"] == True:
         updateImport = """
         UPDATE import_stories
