@@ -169,12 +169,13 @@ def insertStory(story):
             return
         fandomOfName[fandomName] = fandom
         for characterName in story["Tags"].get("All Characters",[]):
-           if characterName in fandom["characters"]:
-               character_fandoms[characterName] = fandom
-               if (fandomName not in characterOfFandoms):
-                   characterOfFandoms[fandomName] = []
-               characterOfFandoms[fandomName].append(characterName)
-    if list(character_fandoms.keys()) != (story["Tags"].get("All Characters",[])):
+            if characterName not in fandom["characters"]:
+               continue
+            character_fandoms[characterName] = fandom
+            if (fandomName not in characterOfFandoms):
+                characterOfFandoms[fandomName] = []
+            characterOfFandoms[fandomName].append(characterName)
+    if sorted(list(character_fandoms.keys())) != sorted((story["Tags"].get("All Characters",[]))):
         print( ",".join(character_fandoms.keys()) + " != " + ",".join(story["Tags"]["All Characters"]) )
         return
     # Both of the above returns indicate that something has not been found in mapper
@@ -241,7 +242,26 @@ def insertStory(story):
         WHERE ID=%s
         """,[modified,modified,storyID])
         metaVal = []
+    print(story["Reimport"])
+    if story["Reimport"] == True:
+        updateImport = """
+        UPDATE import_stories
+        SET import_status='live'
+        WHERE import_from='ffn'
+        AND story_id = %s
+        AND import_story=%s
+        AND import_status='reimport' 
+        """
+        db.execute(updateImport,[ storyID, story["_id"] ])
 
+        sql = """
+        DELETE wp_posts, wp_postmeta FROM wp_posts
+        INNER JOIN wp_postmeta ON wp_posts.ID = wp_postmeta.post_id
+        WHERE post_type = 'chapter'
+        AND post_parent = %s
+        """
+        db.execute(sql,[storyID])
+        
     # Chapter
     chapter_sql = "INSERT INTO wp_posts (post_author,post_date,post_date_gmt,post_content,post_title,post_excerpt,ping_status,to_ping,pinged,post_modified,post_modified_gmt,post_content_filtered,post_parent,post_type) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     chapterIndex = story.get("chapterStartAt",1)
@@ -333,7 +353,7 @@ def dbInsert(table,insertData):
     sql_connection.commit()
     return db.lastrowid
 
-db.execute("SELECT import_user,user_id,import_story FROM import_stories WHERE import_status IN (%s,%s)",['pending','live'])
+db.execute("SELECT import_user,user_id,import_story FROM import_stories WHERE import_status IN (%s,%s,%s)",['pending','live','reimport'])
 authorIds = {}
 for row in db.fetchall():
     if not str(row[0]) in authorIds:
@@ -357,16 +377,19 @@ class ffnImporter(scrapy.Spider):
 
         db.execute("SELECT post_id FROM wp_postmeta WHERE meta_key = 'ffn_author_id' AND meta_value = %s", [Author_ID] )
         storyIds = [tup[0] for tup in db.fetchall()]
-
         ffnIds = {}
         storyChaptersExisting = {}
+        importStatus = {}
         if (len(storyIds) > 0):
             storyIdsPlace = sqlPlaceholder(len(storyIds))
             db.execute(
-                "SELECT story_id,import_story FROM import_stories " +
+                "SELECT story_id,import_story,import_status FROM import_stories " +
                 "WHERE story_id IN(" + storyIdsPlace + ")"
             , storyIds )
-            ffnIds = dict(db.fetchall())
+            import_stories_list = db.fetchall()
+            for row in import_stories_list:
+                importStatus[int(row[0])] = row[2]
+                ffnIds[row[0]] = row[1]
 
             db.execute("SELECT post_parent FROM wp_posts WHERE post_parent IN (" + storyIdsPlace + ")",storyIds)
             for tup in db.fetchall():
@@ -378,6 +401,10 @@ class ffnImporter(scrapy.Spider):
             storyData["Author ID"] = Author_ID
             storyData["Author Name"] = Author_Name
             chapterStartAt = (storyChaptersExisting.get(int(storyData["_id"]),0)) + 1
+            storyData["Reimport"] = False
+            if importStatus.get(int( storyIdsLookup.get(int(storyData["_id"]),0) ),'dont_reimport') == "reimport":
+                storyData["Reimport"] = True
+                chapterStartAt = 1
             storyData["Existing"] = storyIdsLookup.get(int(storyData["_id"]),False)
             # The support for importing new chapters does exist, but that won't be used for now.
             # Thus the condition below
@@ -398,17 +425,17 @@ class ffnImporter(scrapy.Spider):
             )
     def parseChapter(self, response, storyData):
         isCrossover = response.css('#pre_story_links > span > img[src="//ff74.b-cdn.net/static/fcons/arrow-switch.png"]').get() is not None
-
         if isCrossover:
             storyData["Tags"]["Fandom"] = response.css('#pre_story_links > span > a::text').get()[:-10].split(' + ')
         else:
             storyData["Tags"]["Category"] = response.css("#pre_story_links > span > a:first-of-type::text").get()
             storyData["Tags"]["Fandom"] = [response.css('#pre_story_links > span > a:last-child::text').get()]
-        
         title = response.css('select#chap_select > option[selected]::text').get()
         if (title is None):
             title = '1. Chapter 1'
-        title = title.lstrip('123456789')[2:]
+        chapterArr = title.split(". ",1)
+        currentChapter = int(chapterArr[0])
+        title = chapterArr[1]
         cont = ''.join(response.css('#storytext > p').getall())
         storyData['Chapters'].append({
             "title"     : title,
@@ -416,7 +443,7 @@ class ffnImporter(scrapy.Spider):
             "wordCount" : str_word_count( " ".join(response.css("#storytext > p::text").getall() )),
         })
         next_btn = response.css('#chap_select + button.btn::attr(onclick)').get()
-        if (next_btn is not None):
+        if storyData["Tags"]["Chapters"] > currentChapter and next_btn is not None:
             yield response.follow(
                 next_btn.replace('self.location=\'','').rstrip('\''),
                 callback = self.parseChapter,

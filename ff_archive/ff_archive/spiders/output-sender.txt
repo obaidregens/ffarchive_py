@@ -1,9 +1,9 @@
-2020-11-02 23:50:08 [scrapy.extensions.telnet] INFO: Telnet Password: 2603c011bae72261
-2020-11-02 23:50:08 [scrapy.middleware] INFO: Enabled extensions:
+2020-11-04 19:57:46 [scrapy.extensions.telnet] INFO: Telnet Password: 0efbd7571a86dd13
+2020-11-04 19:57:46 [scrapy.middleware] INFO: Enabled extensions:
 ['scrapy.extensions.corestats.CoreStats',
  'scrapy.extensions.telnet.TelnetConsole',
  'scrapy.extensions.logstats.LogStats']
-2020-11-02 23:50:09 [scrapy.middleware] INFO: Enabled downloader middlewares:
+2020-11-04 19:57:47 [scrapy.middleware] INFO: Enabled downloader middlewares:
 ['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
  'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
  'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
@@ -15,52 +15,174 @@
  'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
  'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
  'scrapy.downloadermiddlewares.stats.DownloaderStats']
-2020-11-02 23:50:09 [scrapy.middleware] INFO: Enabled spider middlewares:
+2020-11-04 19:57:47 [scrapy.middleware] INFO: Enabled spider middlewares:
 ['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
  'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
  'scrapy.spidermiddlewares.referer.RefererMiddleware',
  'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
  'scrapy.spidermiddlewares.depth.DepthMiddleware']
-2020-11-02 23:50:09 [scrapy.middleware] INFO: Enabled item pipelines:
+2020-11-04 19:57:47 [scrapy.middleware] INFO: Enabled item pipelines:
 []
-2020-11-02 23:50:09 [scrapy.core.engine] INFO: Spider opened
-2020-11-02 23:50:09 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
-2020-11-02 23:50:09 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
-2020-11-02 23:50:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=3456955> (referer: None)
-2020-11-02 23:50:10 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=3456955> (referer: https://www.fanfiction.net/pm2/post.php?uid=3456955)
-2020-11-02 23:50:10 [stdout] INFO: Sent: H Bregalad
-2020-11-02 23:50:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=10095684> (referer: https://www.fanfiction.net/pm2/post.php?uid=3456955)
-2020-11-02 23:50:21 [stdout] INFO: Sleep
-2020-11-02 23:50:31 [stdout] INFO: Sleep
-2020-11-02 23:50:41 [stdout] INFO: Sleep
-2020-11-02 23:50:41 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=10095684> (referer: https://www.fanfiction.net/pm2/post.php?uid=10095684)
-2020-11-02 23:50:41 [stdout] INFO: Sent: spitfyre1
-2020-11-02 23:50:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=2639789> (referer: https://www.fanfiction.net/pm2/post.php?uid=10095684)
-2020-11-02 23:50:52 [stdout] INFO: Sleep
-2020-11-02 23:51:02 [stdout] INFO: Sleep
-2020-11-02 23:51:12 [stdout] INFO: Sleep
-2020-11-02 23:51:12 [scrapy.extensions.logstats] INFO: Crawled 5 pages (at 5 pages/min), scraped 0 items (at 0 items/min)
-2020-11-02 23:51:12 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=2639789> (referer: https://www.fanfiction.net/pm2/post.php?uid=2639789)
-2020-11-02 23:51:12 [stdout] INFO: Sent: History101
-2020-11-02 23:51:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=10373618> (referer: https://www.fanfiction.net/pm2/post.php?uid=2639789)
-2020-11-02 23:51:23 [stdout] INFO: Sleep
-2020-11-02 23:51:33 [stdout] INFO: Sleep
-2020-11-02 23:51:43 [stdout] INFO: Sleep
-2020-11-02 23:51:43 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=10373618> (referer: https://www.fanfiction.net/pm2/post.php?uid=10373618)
-2020-11-02 23:51:43 [stdout] INFO: Sent: Viladis
-2020-11-02 23:51:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=1381337> (referer: https://www.fanfiction.net/pm2/post.php?uid=10373618)
-2020-11-02 23:51:54 [stdout] INFO: Sleep
-2020-11-02 23:52:04 [stdout] INFO: Sleep
-2020-11-02 23:52:14 [stdout] INFO: Sleep
-2020-11-02 23:52:14 [scrapy.extensions.logstats] INFO: Crawled 9 pages (at 4 pages/min), scraped 0 items (at 0 items/min)
-2020-11-02 23:52:14 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=1381337> (referer: https://www.fanfiction.net/pm2/post.php?uid=1381337)
-2020-11-02 23:52:14 [stdout] INFO: Sent: Doll-Fin-Chick
-2020-11-02 23:52:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=4459877> (referer: https://www.fanfiction.net/pm2/post.php?uid=1381337)
-2020-11-02 23:52:25 [stdout] INFO: Sleep
-2020-11-02 23:52:35 [stdout] INFO: Sleep
-2020-11-02 23:52:45 [stdout] INFO: Sleep
-2020-11-02 23:52:45 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=4459877> (referer: https://www.fanfiction.net/pm2/post.php?uid=4459877)
-2020-11-02 23:52:45 [stdout] INFO: Sent: Awakening5
-2020-11-02 23:52:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=7328642> (referer: https://www.fanfiction.net/pm2/post.php?uid=4459877)
-2020-11-02 23:52:56 [stdout] INFO: Sleep
-2020-11-02 23:53:06 [stdout] INFO: Sleep
+2020-11-04 19:57:47 [scrapy.core.engine] INFO: Spider opened
+2020-11-04 19:57:47 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-11-04 19:57:47 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2020-11-04 19:57:48 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=12345904> (referer: None)
+2020-11-04 19:57:48 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=12345904> (referer: https://www.fanfiction.net/pm2/post.php?uid=12345904)
+2020-11-04 19:57:48 [stdout] INFO: Sent: Sursr
+2020-11-04 19:57:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=1806157> (referer: https://www.fanfiction.net/pm2/post.php?uid=12345904)
+2020-11-04 19:57:59 [stdout] INFO: Sleep
+2020-11-04 19:58:09 [stdout] INFO: Sleep
+2020-11-04 19:58:19 [stdout] INFO: Sleep
+2020-11-04 19:58:19 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=1806157> (referer: https://www.fanfiction.net/pm2/post.php?uid=1806157)
+2020-11-04 19:58:19 [stdout] INFO: Sent: MerlynPrime
+2020-11-04 19:58:19 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=2455049> (referer: https://www.fanfiction.net/pm2/post.php?uid=1806157)
+2020-11-04 19:58:30 [stdout] INFO: Sleep
+2020-11-04 19:58:40 [stdout] INFO: Sleep
+2020-11-04 19:58:50 [stdout] INFO: Sleep
+2020-11-04 19:58:50 [scrapy.extensions.logstats] INFO: Crawled 5 pages (at 5 pages/min), scraped 0 items (at 0 items/min)
+2020-11-04 19:58:50 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=2455049> (referer: https://www.fanfiction.net/pm2/post.php?uid=2455049)
+2020-11-04 19:58:50 [stdout] INFO: Sent: 2brown-eyes
+2020-11-04 19:58:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=1304480> (referer: https://www.fanfiction.net/pm2/post.php?uid=2455049)
+2020-11-04 19:59:00 [stdout] INFO: Sleep
+2020-11-04 19:59:10 [stdout] INFO: Sleep
+2020-11-04 19:59:20 [stdout] INFO: Sleep
+2020-11-04 19:59:21 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=1304480> (referer: https://www.fanfiction.net/pm2/post.php?uid=1304480)
+2020-11-04 19:59:21 [stdout] INFO: Sent: DebsTheSlytherinSnapefan
+2020-11-04 19:59:21 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=7997642> (referer: https://www.fanfiction.net/pm2/post.php?uid=1304480)
+2020-11-04 19:59:31 [stdout] INFO: Sleep
+2020-11-04 19:59:41 [stdout] INFO: Sleep
+2020-11-04 19:59:51 [stdout] INFO: Sleep
+2020-11-04 19:59:51 [scrapy.extensions.logstats] INFO: Crawled 9 pages (at 4 pages/min), scraped 0 items (at 0 items/min)
+2020-11-04 19:59:52 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=7997642> (referer: https://www.fanfiction.net/pm2/post.php?uid=7997642)
+2020-11-04 19:59:52 [stdout] INFO: Sent: FMPtrumpets
+2020-11-04 19:59:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=9436302> (referer: https://www.fanfiction.net/pm2/post.php?uid=7997642)
+2020-11-04 20:00:02 [stdout] INFO: Sleep
+2020-11-04 20:00:12 [stdout] INFO: Sleep
+2020-11-04 20:00:22 [stdout] INFO: Sleep
+2020-11-04 20:00:23 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=9436302> (referer: https://www.fanfiction.net/pm2/post.php?uid=9436302)
+2020-11-04 20:00:23 [stdout] INFO: Sent: lovesbitca8
+2020-11-04 20:00:23 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=11649002> (referer: https://www.fanfiction.net/pm2/post.php?uid=9436302)
+2020-11-04 20:00:33 [stdout] INFO: Sleep
+2020-11-04 20:00:43 [stdout] INFO: Sleep
+2020-11-04 20:00:53 [stdout] INFO: Sleep
+2020-11-04 20:00:53 [scrapy.extensions.logstats] INFO: Crawled 13 pages (at 4 pages/min), scraped 0 items (at 0 items/min)
+2020-11-04 20:00:54 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=11649002> (referer: https://www.fanfiction.net/pm2/post.php?uid=11649002)
+2020-11-04 20:00:54 [stdout] INFO: Sent: JustBored21
+2020-11-04 20:00:54 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=12058842> (referer: https://www.fanfiction.net/pm2/post.php?uid=11649002)
+2020-11-04 20:01:04 [stdout] INFO: Sleep
+2020-11-04 20:01:14 [stdout] INFO: Sleep
+2020-11-04 20:01:24 [stdout] INFO: Sleep
+2020-11-04 20:01:25 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=12058842> (referer: https://www.fanfiction.net/pm2/post.php?uid=12058842)
+2020-11-04 20:01:25 [stdout] INFO: Sent: YoullNeverCatchMeAliveSaidHe
+2020-11-04 20:01:25 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=13827438> (referer: https://www.fanfiction.net/pm2/post.php?uid=12058842)
+2020-11-04 20:01:35 [stdout] INFO: Sleep
+2020-11-04 20:01:45 [stdout] INFO: Sleep
+2020-11-04 20:01:55 [stdout] INFO: Sleep
+2020-11-04 20:01:55 [scrapy.extensions.logstats] INFO: Crawled 17 pages (at 4 pages/min), scraped 0 items (at 0 items/min)
+2020-11-04 20:01:55 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=13827438> (referer: https://www.fanfiction.net/pm2/post.php?uid=13827438)
+2020-11-04 20:01:56 [stdout] INFO: Sent: ubiquitouslyverbose
+2020-11-04 20:01:56 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=5023684> (referer: https://www.fanfiction.net/pm2/post.php?uid=13827438)
+2020-11-04 20:02:06 [stdout] INFO: Sleep
+2020-11-04 20:02:16 [stdout] INFO: Sleep
+2020-11-04 20:02:26 [stdout] INFO: Sleep
+2020-11-04 20:02:26 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=5023684> (referer: https://www.fanfiction.net/pm2/post.php?uid=5023684)
+2020-11-04 20:02:27 [stdout] INFO: Sent: dyslexic penquin
+2020-11-04 20:02:27 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=4036441> (referer: https://www.fanfiction.net/pm2/post.php?uid=5023684)
+2020-11-04 20:02:37 [stdout] INFO: Sleep
+2020-11-04 20:02:47 [stdout] INFO: Sleep
+2020-11-04 20:02:57 [stdout] INFO: Sleep
+2020-11-04 20:02:57 [scrapy.extensions.logstats] INFO: Crawled 21 pages (at 4 pages/min), scraped 0 items (at 0 items/min)
+2020-11-04 20:02:58 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=4036441> (referer: https://www.fanfiction.net/pm2/post.php?uid=4036441)
+2020-11-04 20:02:58 [stdout] INFO: Sent: Silently Watches
+2020-11-04 20:02:58 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=6365873> (referer: https://www.fanfiction.net/pm2/post.php?uid=4036441)
+2020-11-04 20:03:08 [stdout] INFO: Sleep
+2020-11-04 20:03:18 [stdout] INFO: Sleep
+2020-11-04 20:03:28 [stdout] INFO: Sleep
+2020-11-04 20:03:28 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=6365873> (referer: https://www.fanfiction.net/pm2/post.php?uid=6365873)
+2020-11-04 20:03:29 [stdout] INFO: Sent: The Smiling Crow
+2020-11-04 20:03:29 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=1386923> (referer: https://www.fanfiction.net/pm2/post.php?uid=6365873)
+2020-11-04 20:03:39 [stdout] INFO: Sleep
+2020-11-04 20:03:49 [stdout] INFO: Sleep
+2020-11-04 20:03:59 [stdout] INFO: Sleep
+2020-11-04 20:03:59 [scrapy.extensions.logstats] INFO: Crawled 25 pages (at 4 pages/min), scraped 0 items (at 0 items/min)
+2020-11-04 20:03:59 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=1386923> (referer: https://www.fanfiction.net/pm2/post.php?uid=1386923)
+2020-11-04 20:03:59 [stdout] INFO: Sent: Snapegirlkmf
+2020-11-04 20:04:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=3460243> (referer: https://www.fanfiction.net/pm2/post.php?uid=1386923)
+2020-11-04 20:04:10 [stdout] INFO: Sleep
+2020-11-04 20:04:20 [stdout] INFO: Sleep
+2020-11-04 20:04:30 [stdout] INFO: Sleep
+2020-11-04 20:04:30 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=3460243> (referer: https://www.fanfiction.net/pm2/post.php?uid=3460243)
+2020-11-04 20:04:30 [stdout] INFO: Sent: Jpena
+2020-11-04 20:04:31 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=13612815> (referer: https://www.fanfiction.net/pm2/post.php?uid=3460243)
+2020-11-04 20:04:41 [stdout] INFO: Sleep
+2020-11-04 20:04:51 [stdout] INFO: Sleep
+2020-11-04 20:05:01 [stdout] INFO: Sleep
+2020-11-04 20:05:01 [scrapy.extensions.logstats] INFO: Crawled 29 pages (at 4 pages/min), scraped 0 items (at 0 items/min)
+2020-11-04 20:05:01 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=13612815> (referer: https://www.fanfiction.net/pm2/post.php?uid=13612815)
+2020-11-04 20:05:01 [stdout] INFO: Sent: Proton6
+2020-11-04 20:05:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=11300541> (referer: https://www.fanfiction.net/pm2/post.php?uid=13612815)
+2020-11-04 20:05:12 [stdout] INFO: Sleep
+2020-11-04 20:05:22 [stdout] INFO: Sleep
+2020-11-04 20:05:32 [stdout] INFO: Sleep
+2020-11-04 20:05:32 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=11300541> (referer: https://www.fanfiction.net/pm2/post.php?uid=11300541)
+2020-11-04 20:05:32 [stdout] INFO: Sent: maschl
+2020-11-04 20:05:33 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/pm2/post.php?uid=1586290> (referer: https://www.fanfiction.net/pm2/post.php?uid=11300541)
+2020-11-04 20:05:43 [stdout] INFO: Sleep
+2020-11-04 20:05:53 [stdout] INFO: Sleep
+2020-11-04 20:06:03 [stdout] INFO: Sleep
+2020-11-04 20:06:03 [scrapy.extensions.logstats] INFO: Crawled 33 pages (at 4 pages/min), scraped 0 items (at 0 items/min)
+2020-11-04 20:06:03 [scrapy.core.engine] DEBUG: Crawled (200) <POST https://www.fanfiction.net/pm2/post.php?uid=1586290> (referer: https://www.fanfiction.net/pm2/post.php?uid=1586290)
+2020-11-04 20:06:03 [stdout] INFO: Sent: Novus Ars
+2020-11-04 20:06:03 [scrapy.core.scraper] ERROR: Spider error processing <POST https://www.fanfiction.net/pm2/post.php?uid=1586290> (referer: https://www.fanfiction.net/pm2/post.php?uid=1586290)
+Traceback (most recent call last):
+  File "C:\Users\obaid\miniconda3\lib\site-packages\scrapy\utils\defer.py", line 120, in iter_errback
+    yield next(it)
+  File "C:\Users\obaid\miniconda3\lib\site-packages\scrapy\utils\python.py", line 346, in __next__
+    return next(self.data)
+  File "C:\Users\obaid\miniconda3\lib\site-packages\scrapy\utils\python.py", line 346, in __next__
+    return next(self.data)
+  File "C:\Users\obaid\miniconda3\lib\site-packages\scrapy\core\spidermw.py", line 64, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\obaid\miniconda3\lib\site-packages\scrapy\spidermiddlewares\offsite.py", line 29, in process_spider_output
+    for x in result:
+  File "C:\Users\obaid\miniconda3\lib\site-packages\scrapy\core\spidermw.py", line 64, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\obaid\miniconda3\lib\site-packages\scrapy\spidermiddlewares\referer.py", line 340, in <genexpr>
+    return (_set_referer(r) for r in result or ())
+  File "C:\Users\obaid\miniconda3\lib\site-packages\scrapy\core\spidermw.py", line 64, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\obaid\miniconda3\lib\site-packages\scrapy\spidermiddlewares\urllength.py", line 37, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "C:\Users\obaid\miniconda3\lib\site-packages\scrapy\core\spidermw.py", line 64, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\obaid\miniconda3\lib\site-packages\scrapy\spidermiddlewares\depth.py", line 58, in <genexpr>
+    return (r for r in result or () if _filter(r))
+  File "C:\Users\obaid\miniconda3\lib\site-packages\scrapy\core\spidermw.py", line 64, in _evaluate_iterable
+    for r in iterable:
+  File "C:\Users\obaid\Py Projects\ffarchive_py\ff_archive\ff_archive\spiders\ffn_allow.py", line 290, in submit
+    yield self.queue[0]
+IndexError: list index out of range
+2020-11-04 20:06:03 [scrapy.core.engine] INFO: Closing spider (finished)
+2020-11-04 20:06:03 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 32840,
+ 'downloader/request_count': 34,
+ 'downloader/request_method_count/GET': 17,
+ 'downloader/request_method_count/POST': 17,
+ 'downloader/response_bytes': 314045,
+ 'downloader/response_count': 34,
+ 'downloader/response_status_count/200': 34,
+ 'elapsed_time_seconds': 496.612714,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2020, 11, 5, 4, 6, 3, 820290),
+ 'log_count/DEBUG': 34,
+ 'log_count/ERROR': 1,
+ 'log_count/INFO': 83,
+ 'request_depth_max': 33,
+ 'response_received_count': 34,
+ 'scheduler/dequeued': 34,
+ 'scheduler/dequeued/memory': 34,
+ 'scheduler/enqueued': 34,
+ 'scheduler/enqueued/memory': 34,
+ 'spider_exceptions/IndexError': 1,
+ 'start_time': datetime.datetime(2020, 11, 5, 3, 57, 47, 207576)}
+2020-11-04 20:06:03 [scrapy.core.engine] INFO: Spider closed (finished)

@@ -17,7 +17,9 @@ sql_connection = mysql.connector.connect(
 db = sql_connection.cursor()
  
 # Sent Manually
-excludeAuthors = [2277200,11062014,13365819,1936982,12441929,10036896,10123044,9023672,12805030,11887033,7834753,5320029,9784244,12846082,2206870,11176975,12199265,5248331,4166096,5894692,2690404,8342219,11165093,10548669,3620123,13638853,747613,2726003,4790465,13413785,5339762,8899921,2030994,7019604,9443441,6949450,2322071,1960803,13109630,13952026,10948791,4705276,1223404,755589,12630402,11608854,3844729,4718995,12022304,9664991,10079348,8130737,4991010,3844380,10162392,11021791,13704942,4817751,1860009,6596946,12339549,1220065,9595543,13161514,4247320,11121317,7351150,8591231,981797,2184316,1605171,4363318,5187430,8965444,5666630,2446972,12326154,5728664,6415261,6835171,9277092,10731959,638859,6716408,9400623,1909983,12727320,2836195,5460436,7494196,4469194,11271275,3165174,939828,12862990,13660621,2149875,5499201,13556346,812247,6783142,13476475,13265614,147648,2639910,4684913,866407,10558417,12358044,1576308,8957205,62350,12253703,5235093,1915327,3831521,1666976,8784056,1703367,1265079,227409,6778541,12345904,1806157,8543533,3712368,6396272,3714792,9916427,972483,10367009,6578485,13044979,2049212,3026205,431968,4098044,2441303,1463237,956214,5974530,914721,3515029,11509202,3005930,912889,715571,3189590,14018001,13403460,5696277,2794336,4677330,2303471,4724063,12345904,1806157,4098044,3005930,8024050,10654210,3926182,100353,107437,2879833,4280645,2407791,4743479,1251524,7336118,1586290,6807884,7217713,6629459,1465258,10036896,7469591,13612815,49515,6908767,5235608,2229598,10920921,6934403,2394023,31969,6500750,5705073,6626096,5415309,11649002,3460243,2468907,5023684,1386923,13385728,1084919,11300541,6125814,2321552,13827438,4036441,6365873,11142828,2240236,2996114,8182083,5346457,10005030,5698271,2020545,2455049,1864181,1404943,12058842,6737885,7037477,6473098,1304480,4788805,3148526,7997642,1318815,4453643,9436302,8427977,4219330,494464,4314892,2102558,386600,386600,11649582,11649582,13819943,13819943,14168398]
+excludeAuthors = [
+    2277200,11062014,13365819,1936982,12441929,10036896,10123044,9023672,12805030,11887033,7834753,5320029,9784244,12846082,2206870,11176975,12199265,5248331,4166096
+]
 # Sql Get Existing = 
 db.execute("SELECT ffn_user_id from ffn_outreach")
 existingAuthors = [int(tup[0]) for tup in db.fetchall()]
@@ -31,17 +33,17 @@ def dbInsert(table,insertData):
     return db.lastrowid
 
 letter = """
-Hi! :)
+Hi ###USERNAME###! :)
 
 We've created a site at Fanfiction Online {fanfiction (dot) online} for reading and writing fanfiction, since we feel FFN (and other sites) are really outdated and lack a lot of stuff.
 
-We'd love if you could post your stories there. You can reach new readers, and since the site has far better reading, your current readers will read your fanfics more comfortably as well.
+Would love if you could post your stories there. You can reach new readers, and since the site has better reading, your current readers will read your fanfics more comfortably as well.
 
-You might find it difficult to post on another site, so we've done all the heavy lifting for you :) All you have to do is link your FFN account and select the stories you want to import. It's as simple as that. The stories will be updated automatically whenever you update the fic on FFN.
+You might find it difficult to post on another site, so the site will do all the heavy lifting for you :) All you have to do is link your FFN account and select the stories you want to import. It's as simple as that. The stories will be updated automatically whenever you update the fic on FFN. 
 
 Thanks! Let me know if you have any questions.
 """
-letter_subject = "Hi! :)"
+letter_subject = "Hi ###USERNAME###! :)"
 
 out_file = "C:/Users/obaid/Py Projects/ffarchive_py/ff_archive/ff_archive/spiders/UserData.jsonl"
 
@@ -53,15 +55,17 @@ class ffnAllowMessages(scrapy.Spider):
     }
     start_urls = ["https://www.fanfiction.net/" + url + "?&srt=5&lan=1&r=10&t=3" for url in [
         "book/Harry-Potter/",
-        # "anime/Naruto/",
-        # "book/Twilight/",
-        # "anime/Hetalia-Axis-Powers/",
-        # "anime/Inuyasha/",
-        # "tv/Supernatural/"
+        "game/Pokémon/",
+        "anime/Naruto/",
+        "book/Twilight/",
+        "anime/Hetalia-Axis-Powers/",
+        "anime/Inuyasha/",
+        "tv/Supernatural/",
+        "tv/Glee/"
     ]]
     last_sent = 0
-    cookies = settings.creds["ffn-authorPM"]["cookies"]
-    max_pages = 20
+    cookies = settings.creds["ffn-authorPM3"]["cookies"]
+    max_pages = 5
     def parse(self, response):
         for book in response.css('#content_wrapper_inner > div.z-list'):
             Author_ID = int(book.css("a[href^='/u']::attr(href)").get().split('/')[2])
@@ -211,12 +215,13 @@ class ffnAllowMessages(scrapy.Spider):
 class ffnOutreachSender(scrapy.Spider):
     name = "outreach_sender"
     custom_settings = {
-        "LOG_FILE": "C:/Users/obaid/Py Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt"
+        "LOG_FILE": "C:/Users/obaid/Py Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt",
+        "dont_filter": True
     }
     start_urls = []
     last_sent = 0
     queue = []
-    cookies = settings.creds["ffn-authorPM"]["cookies"]
+    cookies = settings.creds["ffn-authorPM3"]["cookies"]
     def start_requests(self):
         self.read()
         yield self.queue[0]
@@ -227,7 +232,11 @@ class ffnOutreachSender(scrapy.Spider):
             time.sleep(5)
             return self.read()
         for line in L:
-            self.queue.append(self.reqs(json.loads(line)))
+            insertData = json.loads(line)
+            A_ID = int(insertData["ffn_user_id"]) 
+            if ( (A_ID in excludeAuthors) or (A_ID in existingAuthors) ):
+                continue
+            self.queue.append(self.reqs(insertData))
     def reqs(self,insertData):
         if ("insertData" in insertData):
             insertData = insertData["insertData"]
@@ -246,6 +255,8 @@ class ffnOutreachSender(scrapy.Spider):
         with open(out_file, "w+") as dump_file:
             dump_file.write(dumper)
     def pms(self,response,insertData):
+        with open("out_file.html", "w+") as dump_file:
+            dump_file.write( "".join( response.css("html > *:not(script):not(style)").getall() ) )
         if (len(response.css("form[name='fpost']")) > 0) and (insertData["ffn_user_id"] not in excludeAuthors):
             while (time.time() - self.last_sent) <= 30:
                 time.sleep(10)
@@ -256,8 +267,8 @@ class ffnOutreachSender(scrapy.Spider):
                 formid ="fpost",
                 formname = 'fpost',
                 formdata = {
-                    'subject'  : letter_subject,
-                    'message'  : letter
+                    'subject'  : letter_subject.replace("###USERNAME###",insertData["ffn_username"]),
+                    'message'  : letter.replace("###USERNAME###",insertData["ffn_username"])
                 },
                 cb_kwargs = {
                     "insertData": insertData
