@@ -540,9 +540,9 @@ $(document).ready(function() {
 
         </ul>
     </li>
-    <li><a href="#" class="underline">Private Messaging (2)</a>
+    <li><a href="#" class="underline">Private Messaging </a>
         <ul>
-             <li class="active"><a href="/pm2/inbox.php" class="underline">- Inbox (2)</a></li>
+             <li class="active"><a href="/pm2/inbox.php" class="underline">- Inbox </a></li>
              <li><a href="/pm2/outbox.php" class="underline">- Outbox</a></li>
         </ul>
     </li>
@@ -641,7 +641,7 @@ $(document).ready(function() {
 </td>
 <td valign="top"><div style="width:100%;text-align:left;" class="table-bordered"><table class="table  table-striped " width="100%" cellpadding="4" id="gui_table1i"><tbody><tr>
 	<td>Private Messaging (PM)</td>
-	<td align="center" valign="middle" width="10%" nowrap><img align="top" src="//ff74.b-cdn.net/static/ficons/folder_star.png" width="16" height="16" border="0"> <a href="inbox.php">Inbox</a> (2)</td>
+	<td align="center" valign="middle" width="10%" nowrap><img align="top" src="//ff74.b-cdn.net/static/ficons/folder_star.png" width="16" height="16" border="0"> <a href="inbox.php">Inbox</a> </td>
 	<td align="center" valign="middle" width="10%" nowrap><img align="top" src="//ff74.b-cdn.net/static/ficons/folder_go.png" width="16" height="16" border="0"> <a href="outbox.php">Outbox</a> </td>
 </tr>
 </tbody></table></div>
@@ -655,7 +655,7 @@ $().ready(function(){
         $.storage = new $.store(); //init
     }
 
-    var t_read = $.storage.get('pm:14434223');
+    var t_read = $.storage.get('pm:14490195');
 
     if(t_read && t_read.length > 0 ) {
         //alert('recovered data' + t_read);
@@ -678,7 +678,7 @@ $().ready(function(){
         var temp = $('textarea#xbody').val();  //make sure we don't save spaces .replace(/^\s+|\s+$/g,'');
 
         if(temp && temp.length > 0 &&  temp != "Type your comments here.") {
-            $.storage.set('pm:14434223', temp);
+            $.storage.set('pm:14490195', temp);
             //console.log('set'+temp);
         }
     }
@@ -806,7 +806,7 @@ function ajax_preview() {
 </tr>
 <tr>
 	<td valign="top" nowrap width="5%">To: </td>
-	<td><img class="lazy round36" style="clear:left;float:left;margin-right:3px;padding:2px;border:1px solid #ccc;-moz-border-radius:2px;-webkit-border-radius:2px;" src="//ff74.b-cdn.net/static/images/d_60_90.jpg" data-original="//ff74.b-cdn.net/image/6030569/50/50/" width="50" height="50"> <a href="/u/12891178/" target="_new">effinsusie</a></td>
+	<td><img class="lazy round36" style="clear:left;float:left;margin-right:3px;padding:2px;border:1px solid #ccc;-moz-border-radius:2px;-webkit-border-radius:2px;" src="//ff74.b-cdn.net/static/images/d_60_90.jpg" data-original="//ff74.b-cdn.net/image/4526498/50/50/" width="50" height="50"> <a href="/u/4033346/" target="_new">ImpoliteLover</a></td>
 </tr>
 <tr>
 	<td valign="top" nowrap width="5%">Subject:<br><span class="xgray" style="font-size:11px;"><span id="smsgCounter">255</span> characters</span></td>
@@ -816,7 +816,7 @@ function ajax_preview() {
 	<td valign="top" nowrap width="5%">Message:<br><span class="xgray" style="font-size:11px;"><span id="msgCounter">8000</span> characters</span></td>
 	<td>
     <textarea onkeydown="textCounter(this.form.message,8000,'msgCounter');" id="xbody" required maxlength="8000" title="please compose your message (8000 character limit)" wrap="virtual" style="width:99%" rows="12" name="message"></textarea>
-    <input type="hidden" name="uid" value="12891178">
+    <input type="hidden" name="uid" value="4033346">
     <input type="hidden" name="rid" value="0">
     <input type="hidden" name="rwid" value="0">
     <input type="hidden" name="action" value="send">
@@ -830,7 +830,7 @@ function ajax_preview() {
 </tr>
 </tbody></table></div>
             <!-- end table -->
-            <input type="hidden" name="cty" value="1443422318176bd5ff690601c41a2d7d4411601c85e9fcb58bf666c9d1acd4f96dffc33c">
+            <input type="hidden" name="cty" value="1449019578c1bd81cbc9265744618b5f4948a2ef61cfe5b30b6a33f3c4d5c62f3a3bbc22">
 </form>
 <script>
     $().ready(function(){

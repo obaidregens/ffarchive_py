@@ -17,9 +17,7 @@ sql_connection = mysql.connector.connect(
 db = sql_connection.cursor()
  
 # Sent Manually
-excludeAuthors = [
-    2277200,11062014,13365819,1936982,12441929,10036896,10123044,9023672,12805030,11887033,7834753,5320029,9784244,12846082,2206870,11176975,12199265,5248331,4166096
-]
+excludeAuthors = []
 # Sql Get Existing = 
 db.execute("SELECT ffn_user_id from ffn_outreach")
 existingAuthors = [int(tup[0]) for tup in db.fetchall()]
@@ -53,7 +51,7 @@ class ffnAllowMessages(scrapy.Spider):
     custom_settings = {
         "LOG_FILE": "C:/Users/obaid/Py Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-get.txt"
     }
-    start_urls = ["https://www.fanfiction.net/" + url + "?&srt=5&lan=1&r=10&t=3" for url in [
+    start_urls = ["https://www.fanfiction.net/" + url + "?&srt=5&r=10&t=4" for url in [
         "book/Harry-Potter/",
         "game/Pokémon/",
         "anime/Naruto/",
@@ -64,8 +62,8 @@ class ffnAllowMessages(scrapy.Spider):
         "tv/Glee/"
     ]]
     last_sent = 0
-    cookies = settings.creds["ffn-authorPM3"]["cookies"]
-    max_pages = 5
+    cookies = settings.creds["ffn-authorPM"]["cookies"]
+    max_pages = 20
     def parse(self, response):
         for book in response.css('#content_wrapper_inner > div.z-list'):
             Author_ID = int(book.css("a[href^='/u']::attr(href)").get().split('/')[2])
@@ -125,13 +123,18 @@ class ffnAllowMessages(scrapy.Spider):
                 
             fandoms_count = {}
             for story in response.css("div.z-list.mystories"):
-                tags = ''.join(story.css('.z-padtop2.xgray::text,.z-padtop2.xgray *::text').getall()).split(' - ')
+                raw_tags_string = ''.join(story.css('.z-padtop2.xgray::text,.z-padtop2.xgray *::text').getall())
+                # Remove Crossover
+                if raw_tags_string[:12] == "Crossover - ":
+                    raw_tags_string = raw_tags_string[12:]
+                # Remove Fandom
+                raw_tags_string = raw_tags_string[len(story.attrib["data-category"]) + len(" - "):]
+
+                tags = raw_tags_string.split(' - ')
                 tags_dict = {}
+                tags_dict["fandom"] = story.attrib["data-category"]
                 tags_dict["updated"] = int(story.attrib["data-dateupdate"])
                 tags_dict["published"] = int(story.attrib["data-datesubmit"])
-                tags_dict["fandom"] = tags.pop(0)
-                if (tags_dict["fandom"] == "Crossover"):
-                    tags_dict["fandom"] = tags.pop(0)
                 tags_dict["language"] = tags.pop(1)
                 if 'Chapters: ' not in tags[1]:
                     tags_dict['genre'] = tags.pop(1)
@@ -218,10 +221,15 @@ class ffnOutreachSender(scrapy.Spider):
         "LOG_FILE": "C:/Users/obaid/Py Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt",
         "dont_filter": True
     }
-    start_urls = []
-    last_sent = 0
+    last_sent = {}
     queue = []
-    cookies = settings.creds["ffn-authorPM3"]["cookies"]
+    rotate = [
+        "ffn-authorPM",
+        "ffn-authorPM2",
+        "ffn-authorPM3",
+        "ffn-authorPM4",
+        "ffn-authorPM5"
+    ]
     def start_requests(self):
         self.read()
         yield self.queue[0]
@@ -238,14 +246,18 @@ class ffnOutreachSender(scrapy.Spider):
                 continue
             self.queue.append(self.reqs(insertData))
     def reqs(self,insertData):
+        index = int(int((len(self.queue)/5*10)%10)/2)
+        user = self.rotate[index]
+        cookies = settings.creds[user]["cookies"]
         if ("insertData" in insertData):
             insertData = insertData["insertData"]
         return scrapy.Request(
             "https://www.fanfiction.net/pm2/post.php?uid=" + str(insertData["ffn_user_id"]),
-            cookies = self.cookies,
+            cookies = cookies,
             callback = self.pms,
             cb_kwargs={
-                "insertData": insertData
+                "insertData": insertData,
+                "user": user
             }
         )
     def write(self):
@@ -254,14 +266,12 @@ class ffnOutreachSender(scrapy.Spider):
             dumper += json.dumps(req.cb_kwargs["insertData"]) + "\n"
         with open(out_file, "w+") as dump_file:
             dump_file.write(dumper)
-    def pms(self,response,insertData):
-        with open("out_file.html", "w+") as dump_file:
-            dump_file.write( "".join( response.css("html > *:not(script):not(style)").getall() ) )
-        if (len(response.css("form[name='fpost']")) > 0) and (insertData["ffn_user_id"] not in excludeAuthors):
-            while (time.time() - self.last_sent) <= 30:
-                time.sleep(10)
+    def pms(self,response,insertData,user):
+        if (len(response.css("form[name='fpost']")) > 0) and (insertData["ffn_user_id"] not in excludeAuthors) and (insertData["ffn_user_id"] not in existingAuthors):
+            while (time.time() - self.last_sent.get(user,0)) <= 35:
+                time.sleep(5)
                 print("Sleep")
-            self.last_sent = time.time()
+            self.last_sent[user] = time.time()
             return scrapy.FormRequest.from_response(
                 response,
                 formid ="fpost",
@@ -271,11 +281,12 @@ class ffnOutreachSender(scrapy.Spider):
                     'message'  : letter.replace("###USERNAME###",insertData["ffn_username"])
                 },
                 cb_kwargs = {
-                    "insertData": insertData
+                    "insertData": insertData,
+                    "user": user
                 },
                 callback = self.submit
             )
-    def submit (self, response, insertData):
+    def submit (self, response, insertData, user):
         res = response.css('#xpreview.zhide + div + div::attr(class)').get()
         if res == "panel_success":
             dbInsert("ffn_outreach",insertData)
@@ -283,6 +294,8 @@ class ffnOutreachSender(scrapy.Spider):
             self.queue.pop(0)
             self.write()
         elif res == "panel_warning":
+            print(response.css("#xpreview.zhide + div + div").get())
+            print("From: " + user)
             print("Unsent: " + insertData["ffn_username"])
             pass
         else:

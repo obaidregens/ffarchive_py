@@ -1,2 +1,5 @@
 
 ff_archive/ff_archive/archive.html
+*.pyc
+*.pyc
+*.jsonl

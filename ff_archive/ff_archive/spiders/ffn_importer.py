@@ -8,6 +8,11 @@ import re
 import json
 import ff_archive.spiders.crawl_settings as crawl_settings
 import sqlite3
+import lxml.html.clean as clean
+
+# HTML Cleaner
+cleaner = clean.Cleaner(safe_attrs_only=True, safe_attrs=set(["style"]),page_structure=False)
+
 
 settings = crawl_settings.settings()
 lite_connection = sqlite3.connect("CharacterMaps.db")
@@ -88,8 +93,11 @@ def ensureTerm(term, taxonomy, parent=0):
     return int(term_id)
 def connectTerm(storyID,termID):
     sql = "INSERT INTO wp_term_relationships (object_id,term_taxonomy_id) VALUES (%s, %s)"
-    db.execute(sql,[storyID,termID])
-    sql_connection.commit()
+    try:
+        db.execute(sql,[storyID,termID])
+        sql_connection.commit()
+    except:
+        pass
 def updateTermsCount():
     sql = """
     UPDATE wp_term_taxonomy SET count = (
@@ -236,11 +244,12 @@ def insertStory(story):
             insertPairing(storyID,relationshipCharacters)
         updateImport = """
         UPDATE import_stories
-        SET import_status='live', story_id=%s, import_time=%s
+        SET import_status='live', story_id=%s, import_time=%s, import_favs=%s,import_follows=%s
         WHERE import_from='ffn' AND import_story=%s 
         """
-        db.execute(updateImport,[storyID,int(time.time()),story["_id"]])
+        db.execute(updateImport,[storyID,int(time.time()),story["Tags"].get("Favs",0),story["Tags"].get("Follows",0),story["_id"]])
     else:
+        # Update Story Time as per FFN for Updating and Reimporting Stories
         storyID = int(story["Existing"])
         db.execute("""
         UPDATE wp_posts
@@ -249,6 +258,7 @@ def insertStory(story):
         """,[modified,modified,storyID])
         metaVal = []
     if story["Reimport"] == True:
+        # Set to Live
         updateImport = """
         UPDATE import_stories
         SET import_status='live'
@@ -258,62 +268,99 @@ def insertStory(story):
         AND import_status='reimport' 
         """
         db.execute(updateImport,[ storyID, story["_id"] ])
-
+        # Get current chapters
         sql = """
-        DELETE wp_posts, wp_postmeta FROM wp_posts
-        INNER JOIN wp_postmeta ON wp_posts.ID = wp_postmeta.post_id
-        WHERE post_type = 'chapter'
-        AND post_parent = %s
+        SELECT b.meta_value,a.ID FROM wp_posts as a
+        INNER JOIN wp_postmeta as b ON a.ID = b.post_id
+        WHERE a.post_parent = %s
+        AND a.post_type = 'chapter'
+        AND b.meta_key = 'chapter_order'
         """
         db.execute(sql,[storyID])
-        
-    # Chapter
-    chapter_sql = "INSERT INTO wp_posts (post_author,post_date,post_date_gmt,post_content,post_title,post_excerpt,ping_status,to_ping,pinged,post_modified,post_modified_gmt,post_content_filtered,post_parent,post_type) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-    chapterIndex = story.get("chapterStartAt",1)
-    totalWords = 0
-    for chapter in story["Chapters"]:
-        # Insert Chapter
-        chapter_val = (user_id,modified,modified,chapter["content"],chapter["title"],"",'closed',"","",modified,modified,"",storyID,'chapter')
-        db.execute(chapter_sql, chapter_val)
-        sql_connection.commit()
-        chapterID = db.lastrowid
-        # Add to Chapter Meta Value
-        totalWords += chapter["wordCount"]
-        metaVal.append((chapterID,'word-count',chapter["wordCount"]))
-        metaVal.append((chapterID,'chapter_order',chapterIndex))
-        chapterIndex += 1
+        chapters = {int(tup[0]):int(tup[1]) for tup in db.fetchall()}
+        toDelete = []
+        for i in list(range(len(story["Chapters"]),len(chapters))):
+            toDelete.append(chapters[i+1])
+        if len(toDelete) > 0:
+            db.execute("DELETE FROM wp_posts WHERE ID IN (" + sqlPlaceholder(len(toDelete)) + ")",toDelete)
 
-
-    # Insert Story and Chapter Meta
-    if story["Existing"] == False:
-        metaVal.append((storyID,'word-count',totalWords))
+        chapterIndex = 1
+        for chapter in story["Chapters"]:
+            if chapterIndex in chapters:
+                db.execute(
+                    "UPDATE wp_posts SET post_content = %s, post_title = %s WHERE ID = %s",
+                    [chapter['content'],chapter['title'],chapters[chapterIndex]]
+                )
+                # Update Word Count
+                db.execute(
+                    "UPDATE wp_postmeta SET meta_value = %s WHERE meta_key = 'word-count' AND post_id = %s",
+                    [chapter["wordCount"],chapters[chapterIndex]]
+                )
+            else:
+                chapter_id = dbInsert("wp_posts",{
+                    "post_author": user_id,
+                    "post_date": modified,
+                    "post_date_gmt": modified,
+                    "post_content": chapter["content"],
+                    "post_title": chapter["title"],
+                    "post_excerpt": "",
+                    "ping_status": "closed",
+                    "to_ping": "",
+                    "pinged": "",
+                    "post_modified": modified,
+                    "post_modified_gmt": modified,
+                    "post_content_filtered": "",
+                    "post_parent": storyID,
+                    "post_type": "chapter"
+                })
+                metaVal.append((chapter_id,'word-count',chapter["wordCount"]))
+                metaVal.append(( chapter_id, 'chapter_order', chapterIndex ))
+            chapterIndex += 1
+    else:
+        # Chapter
+        chapter_sql = "INSERT INTO wp_posts (post_author,post_date,post_date_gmt,post_content,post_title,post_excerpt,ping_status,to_ping,pinged,post_modified,post_modified_gmt,post_content_filtered,post_parent,post_type) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        chapterIndex = story.get("chapterStartAt",1)
+        totalWords = 0
+        for chapter in story["Chapters"]:
+            # Insert Chapter
+            chapter_val = (user_id,modified,modified,chapter["content"],chapter["title"],"",'closed',"","",modified,modified,"",storyID,'chapter')
+            db.execute(chapter_sql, chapter_val)
+            sql_connection.commit()
+            chapterID = db.lastrowid
+            # Add to Chapter Meta Value
+            totalWords += chapter["wordCount"]
+            metaVal.append((chapterID,'word-count',chapter["wordCount"]))
+            metaVal.append((chapterID,'chapter_order',chapterIndex))
+            chapterIndex += 1
+    
     metaSql = "INSERT INTO wp_postmeta (post_id,meta_key,meta_value) VALUES (%s, %s, %s)"
     db.executemany(metaSql,metaVal)
 
-    # Now Let's add a notification if all users stories have been done.
-    a_imported.append(str(story["_id"]))
-    if len(set(authorIds[str(author_ID)]["include"]) - set(a_imported)) < 1:
-        db.execute(
-            """
-            INSERT INTO notifications (user_id,notification_type,type_of,type_of_id,type_by,type_by_id,email_status,timestamp)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",
-            [user_id,'stories_imported','user',user_id,'ffn_user',author_ID,'none',time.time()]
-        )
-    sql_connection.commit()
-    if story["Existing"] != False:
-        db.execute("""
-        SELECT SUM(wp_postmeta.meta_value) as c FROM wp_postmeta
-        INNER JOIN wp_posts ON wp_posts.ID = wp_postmeta.post_id
-        WHERE wp_postmeta.meta_key = 'word-count'
-        AND wp_posts.post_parent = %s
-        """,[storyID])
-        word_count = int(db.fetchone()[0])
-        db.execute("""
-        UPDATE wp_postmeta
-        SET meta_value = %s
-        WHERE post_id=%s AND meta_key="word-count"
-        """,[word_count,storyID])
+    if story["Reimport"] == True or story["Existing"] == False:
+        # Now Let's add a notification if all users stories have been done.
+        a_imported.append(str(story["_id"]))
+        if len(set(authorIds[str(author_ID)]["include"]) - set(a_imported)) < 1:
+            db.execute(
+                """
+                INSERT INTO notifications (user_id,notification_type,type_of,type_of_id,type_by,type_by_id,email_status,timestamp)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",
+                [user_id,'stories_imported','user',user_id,'ffn_user',author_ID,'none',time.time()]
+            )
         sql_connection.commit()
+    # Update Words
+    db.execute("""
+    SELECT SUM(wp_postmeta.meta_value) as c FROM wp_postmeta
+    INNER JOIN wp_posts ON wp_posts.ID = wp_postmeta.post_id
+    WHERE wp_postmeta.meta_key = 'word-count'
+    AND wp_posts.post_parent = %s
+    """,[storyID])
+    word_count = int(db.fetchone()[0])
+    db.execute("""
+    UPDATE wp_postmeta
+    SET meta_value = %s
+    WHERE post_id=%s AND meta_key="word-count"
+    """,[word_count,storyID])
+    sql_connection.commit()
 def sqlPlaceholder(l):
     return ",".join(['%s'] * l )
 def insertPairing(storyID,characters):
@@ -329,6 +376,7 @@ def insertPairing(storyID,characters):
         n[pairing_id].append(character_id)
     pp = 0
     for pairing_id,characters_of in n.items():
+        characters_of = list(map(str,characters_of))
         characters_of.sort()
         if characters == characters_of:
             pp = pairing_id
@@ -441,7 +489,9 @@ class ffnImporter(scrapy.Spider):
         chapterArr = title.split(". ",1)
         currentChapter = int(chapterArr[0])
         title = chapterArr[1]
-        cont = ''.join(response.css('#storytext > p').getall())
+        cont = ''.join(response.css('#storytext > p,#storytext > hr').getall())
+        # Strip Div Tag Cleaner adds
+        cont = cleaner.clean_html(cont)[5:-6]
         storyData['Chapters'].append({
             "title"     : title,
             "content"   : cont,

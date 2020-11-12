@@ -1,0 +1,580 @@
+2020-11-12 04:59:37 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-12 04:59:37 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-12 04:59:37 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-12 04:59:37 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-12 04:59:37 [scrapy.extensions.telnet] INFO: Telnet Password: c08b8b30209a153b
+2020-11-12 04:59:37 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2020-11-12 04:59:38 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-11-12 04:59:38 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-11-12 04:59:38 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2020-11-12 04:59:38 [scrapy.core.engine] INFO: Spider opened
+2020-11-12 04:59:38 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-11-12 04:59:38 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2020-11-12 04:59:38 [scrapy.core.engine] INFO: Closing spider (finished)
+2020-11-12 04:59:38 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'elapsed_time_seconds': 0.017995,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2020, 11, 12, 12, 59, 38, 348982),
+ 'log_count/INFO': 10,
+ 'start_time': datetime.datetime(2020, 11, 12, 12, 59, 38, 330987)}
+2020-11-12 04:59:38 [scrapy.core.engine] INFO: Spider closed (finished)
+2020-11-12 04:59:51 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-12 04:59:51 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-12 04:59:51 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-12 04:59:51 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-12 04:59:51 [scrapy.extensions.telnet] INFO: Telnet Password: 65334b475b93552c
+2020-11-12 04:59:51 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2020-11-12 04:59:52 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-11-12 04:59:52 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-11-12 04:59:52 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2020-11-12 04:59:52 [scrapy.core.engine] INFO: Spider opened
+2020-11-12 04:59:52 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-11-12 04:59:52 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2020-11-12 04:59:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/u/491287> (referer: None)
+2020-11-12 04:59:54 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/1> (referer: https://www.fanfiction.net/u/491287)
+2020-11-12 04:59:54 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/2/Isolation> (referer: https://www.fanfiction.net/s/6291747/1)
+2020-11-12 04:59:55 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/3/Isolation> (referer: https://www.fanfiction.net/s/6291747/2/Isolation)
+2020-11-12 04:59:56 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/4/Isolation> (referer: https://www.fanfiction.net/s/6291747/3/Isolation)
+2020-11-12 04:59:56 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/5/Isolation> (referer: https://www.fanfiction.net/s/6291747/4/Isolation)
+2020-11-12 04:59:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/6/Isolation> (referer: https://www.fanfiction.net/s/6291747/5/Isolation)
+2020-11-12 04:59:58 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/7/Isolation> (referer: https://www.fanfiction.net/s/6291747/6/Isolation)
+2020-11-12 04:59:58 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/8/Isolation> (referer: https://www.fanfiction.net/s/6291747/7/Isolation)
+2020-11-12 04:59:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/9/Isolation> (referer: https://www.fanfiction.net/s/6291747/8/Isolation)
+2020-11-12 05:00:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/10/Isolation> (referer: https://www.fanfiction.net/s/6291747/9/Isolation)
+2020-11-12 05:00:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/11/Isolation> (referer: https://www.fanfiction.net/s/6291747/10/Isolation)
+2020-11-12 05:00:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/12/Isolation> (referer: https://www.fanfiction.net/s/6291747/11/Isolation)
+2020-11-12 05:00:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/13/Isolation> (referer: https://www.fanfiction.net/s/6291747/12/Isolation)
+2020-11-12 05:00:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/14/Isolation> (referer: https://www.fanfiction.net/s/6291747/13/Isolation)
+2020-11-12 05:00:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/15/Isolation> (referer: https://www.fanfiction.net/s/6291747/14/Isolation)
+2020-11-12 05:00:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/16/Isolation> (referer: https://www.fanfiction.net/s/6291747/15/Isolation)
+2020-11-12 05:00:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/17/Isolation> (referer: https://www.fanfiction.net/s/6291747/16/Isolation)
+2020-11-12 05:00:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/18/Isolation> (referer: https://www.fanfiction.net/s/6291747/17/Isolation)
+2020-11-12 05:00:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/19/Isolation> (referer: https://www.fanfiction.net/s/6291747/18/Isolation)
+2020-11-12 05:00:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/20/Isolation> (referer: https://www.fanfiction.net/s/6291747/19/Isolation)
+2020-11-12 05:00:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/21/Isolation> (referer: https://www.fanfiction.net/s/6291747/20/Isolation)
+2020-11-12 05:00:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/22/Isolation> (referer: https://www.fanfiction.net/s/6291747/21/Isolation)
+2020-11-12 05:00:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/23/Isolation> (referer: https://www.fanfiction.net/s/6291747/22/Isolation)
+2020-11-12 05:00:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/24/Isolation> (referer: https://www.fanfiction.net/s/6291747/23/Isolation)
+2020-11-12 05:00:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/25/Isolation> (referer: https://www.fanfiction.net/s/6291747/24/Isolation)
+2020-11-12 05:00:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/26/Isolation> (referer: https://www.fanfiction.net/s/6291747/25/Isolation)
+2020-11-12 05:00:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/27/Isolation> (referer: https://www.fanfiction.net/s/6291747/26/Isolation)
+2020-11-12 05:00:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/28/Isolation> (referer: https://www.fanfiction.net/s/6291747/27/Isolation)
+2020-11-12 05:00:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/29/Isolation> (referer: https://www.fanfiction.net/s/6291747/28/Isolation)
+2020-11-12 05:00:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/30/Isolation> (referer: https://www.fanfiction.net/s/6291747/29/Isolation)
+2020-11-12 05:00:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/31/Isolation> (referer: https://www.fanfiction.net/s/6291747/30/Isolation)
+2020-11-12 05:00:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/32/Isolation> (referer: https://www.fanfiction.net/s/6291747/31/Isolation)
+2020-11-12 05:00:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/33/Isolation> (referer: https://www.fanfiction.net/s/6291747/32/Isolation)
+2020-11-12 05:00:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/34/Isolation> (referer: https://www.fanfiction.net/s/6291747/33/Isolation)
+2020-11-12 05:00:15 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/35/Isolation> (referer: https://www.fanfiction.net/s/6291747/34/Isolation)
+2020-11-12 05:00:16 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/36/Isolation> (referer: https://www.fanfiction.net/s/6291747/35/Isolation)
+2020-11-12 05:00:16 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/37/Isolation> (referer: https://www.fanfiction.net/s/6291747/36/Isolation)
+2020-11-12 05:00:17 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/38/Isolation> (referer: https://www.fanfiction.net/s/6291747/37/Isolation)
+2020-11-12 05:00:18 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/39/Isolation> (referer: https://www.fanfiction.net/s/6291747/38/Isolation)
+2020-11-12 05:00:18 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/40/Isolation> (referer: https://www.fanfiction.net/s/6291747/39/Isolation)
+2020-11-12 05:00:19 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/41/Isolation> (referer: https://www.fanfiction.net/s/6291747/40/Isolation)
+2020-11-12 05:00:20 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/42/Isolation> (referer: https://www.fanfiction.net/s/6291747/41/Isolation)
+2020-11-12 05:00:20 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/43/Isolation> (referer: https://www.fanfiction.net/s/6291747/42/Isolation)
+2020-11-12 05:00:21 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/44/Isolation> (referer: https://www.fanfiction.net/s/6291747/43/Isolation)
+2020-11-12 05:00:21 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/45/Isolation> (referer: https://www.fanfiction.net/s/6291747/44/Isolation)
+2020-11-12 05:00:22 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/46/Isolation> (referer: https://www.fanfiction.net/s/6291747/45/Isolation)
+2020-11-12 05:00:23 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/47/Isolation> (referer: https://www.fanfiction.net/s/6291747/46/Isolation)
+2020-11-12 05:00:23 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/48/Isolation> (referer: https://www.fanfiction.net/s/6291747/47/Isolation)
+2020-11-12 05:00:24 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/49/Isolation> (referer: https://www.fanfiction.net/s/6291747/48/Isolation)
+2020-11-12 05:00:24 [stdout] INFO: 1
+2020-11-12 05:00:24 [stdout] INFO: 20504
+2020-11-12 05:00:24 [stdout] INFO: 2
+2020-11-12 05:00:24 [stdout] INFO: 20505
+2020-11-12 05:00:24 [stdout] INFO: 3
+2020-11-12 05:00:24 [stdout] INFO: 20506
+2020-11-12 05:00:24 [stdout] INFO: 4
+2020-11-12 05:00:24 [stdout] INFO: 20507
+2020-11-12 05:00:24 [stdout] INFO: 5
+2020-11-12 05:00:24 [stdout] INFO: 20508
+2020-11-12 05:00:24 [stdout] INFO: 6
+2020-11-12 05:00:24 [stdout] INFO: 20509
+2020-11-12 05:00:24 [stdout] INFO: 7
+2020-11-12 05:00:24 [stdout] INFO: 20510
+2020-11-12 05:00:24 [stdout] INFO: 8
+2020-11-12 05:00:24 [stdout] INFO: 20511
+2020-11-12 05:00:24 [stdout] INFO: 9
+2020-11-12 05:00:24 [stdout] INFO: 20512
+2020-11-12 05:00:24 [stdout] INFO: 10
+2020-11-12 05:00:24 [stdout] INFO: 20513
+2020-11-12 05:00:24 [stdout] INFO: 11
+2020-11-12 05:00:24 [stdout] INFO: 20514
+2020-11-12 05:00:24 [stdout] INFO: 12
+2020-11-12 05:00:24 [stdout] INFO: 20515
+2020-11-12 05:00:24 [stdout] INFO: 13
+2020-11-12 05:00:24 [stdout] INFO: 20540
+2020-11-12 05:00:24 [stdout] INFO: 14
+2020-11-12 05:00:24 [stdout] INFO: 20541
+2020-11-12 05:00:24 [stdout] INFO: 15
+2020-11-12 05:00:24 [stdout] INFO: 20542
+2020-11-12 05:00:24 [stdout] INFO: 16
+2020-11-12 05:00:24 [stdout] INFO: 20543
+2020-11-12 05:00:24 [stdout] INFO: 17
+2020-11-12 05:00:24 [stdout] INFO: 20544
+2020-11-12 05:00:24 [stdout] INFO: 18
+2020-11-12 05:00:24 [stdout] INFO: 20546
+2020-11-12 05:00:24 [stdout] INFO: 19
+2020-11-12 05:00:24 [stdout] INFO: 20547
+2020-11-12 05:00:24 [stdout] INFO: 20
+2020-11-12 05:00:24 [stdout] INFO: 20548
+2020-11-12 05:00:24 [stdout] INFO: 21
+2020-11-12 05:00:24 [stdout] INFO: 20549
+2020-11-12 05:00:24 [stdout] INFO: 22
+2020-11-12 05:00:24 [stdout] INFO: 20550
+2020-11-12 05:00:24 [stdout] INFO: 23
+2020-11-12 05:00:24 [stdout] INFO: 20551
+2020-11-12 05:00:24 [stdout] INFO: 24
+2020-11-12 05:00:24 [stdout] INFO: 20552
+2020-11-12 05:00:24 [stdout] INFO: 25
+2020-11-12 05:00:24 [stdout] INFO: 20553
+2020-11-12 05:00:24 [stdout] INFO: 26
+2020-11-12 05:00:24 [stdout] INFO: 20554
+2020-11-12 05:00:24 [stdout] INFO: 27
+2020-11-12 05:00:24 [stdout] INFO: 20555
+2020-11-12 05:00:24 [stdout] INFO: 28
+2020-11-12 05:00:24 [stdout] INFO: 20556
+2020-11-12 05:00:24 [stdout] INFO: 29
+2020-11-12 05:00:24 [stdout] INFO: 20557
+2020-11-12 05:00:24 [stdout] INFO: 30
+2020-11-12 05:00:24 [stdout] INFO: 20558
+2020-11-12 05:00:24 [stdout] INFO: 31
+2020-11-12 05:00:24 [stdout] INFO: 20559
+2020-11-12 05:00:24 [stdout] INFO: 32
+2020-11-12 05:00:24 [stdout] INFO: 20560
+2020-11-12 05:00:24 [stdout] INFO: 33
+2020-11-12 05:00:24 [stdout] INFO: 20561
+2020-11-12 05:00:24 [stdout] INFO: 34
+2020-11-12 05:00:24 [stdout] INFO: 20562
+2020-11-12 05:00:24 [stdout] INFO: 35
+2020-11-12 05:00:24 [stdout] INFO: 20563
+2020-11-12 05:00:24 [stdout] INFO: 36
+2020-11-12 05:00:24 [stdout] INFO: 20564
+2020-11-12 05:00:24 [stdout] INFO: 37
+2020-11-12 05:00:24 [stdout] INFO: 20565
+2020-11-12 05:00:24 [stdout] INFO: 38
+2020-11-12 05:00:24 [stdout] INFO: 20566
+2020-11-12 05:00:24 [stdout] INFO: 39
+2020-11-12 05:00:24 [stdout] INFO: 20567
+2020-11-12 05:00:24 [stdout] INFO: 40
+2020-11-12 05:00:24 [stdout] INFO: 20568
+2020-11-12 05:00:24 [stdout] INFO: 41
+2020-11-12 05:00:24 [stdout] INFO: 20569
+2020-11-12 05:00:24 [stdout] INFO: 42
+2020-11-12 05:00:24 [stdout] INFO: 20570
+2020-11-12 05:00:24 [stdout] INFO: 43
+2020-11-12 05:00:24 [stdout] INFO: 20571
+2020-11-12 05:00:24 [stdout] INFO: 44
+2020-11-12 05:00:24 [stdout] INFO: 20572
+2020-11-12 05:00:24 [stdout] INFO: 45
+2020-11-12 05:00:24 [stdout] INFO: 20573
+2020-11-12 05:00:24 [stdout] INFO: 46
+2020-11-12 05:00:24 [stdout] INFO: 20574
+2020-11-12 05:00:24 [stdout] INFO: 47
+2020-11-12 05:00:24 [stdout] INFO: 20575
+2020-11-12 05:00:24 [stdout] INFO: 48
+2020-11-12 05:00:24 [stdout] INFO: 20576
+2020-11-12 05:00:24 [stdout] INFO: 49
+2020-11-12 05:00:24 [stdout] INFO: 20577
+2020-11-12 05:00:24 [scrapy.core.engine] INFO: Closing spider (finished)
+2020-11-12 05:00:24 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 14874,
+ 'downloader/request_count': 50,
+ 'downloader/request_method_count/GET': 50,
+ 'downloader/response_bytes': 1217765,
+ 'downloader/response_count': 50,
+ 'downloader/response_status_count/200': 50,
+ 'elapsed_time_seconds': 32.572299,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2020, 11, 12, 13, 0, 24, 706392),
+ 'log_count/DEBUG': 50,
+ 'log_count/INFO': 108,
+ 'request_depth_max': 49,
+ 'response_received_count': 50,
+ 'scheduler/dequeued': 50,
+ 'scheduler/dequeued/memory': 50,
+ 'scheduler/enqueued': 50,
+ 'scheduler/enqueued/memory': 50,
+ 'start_time': datetime.datetime(2020, 11, 12, 12, 59, 52, 134093)}
+2020-11-12 05:00:24 [scrapy.core.engine] INFO: Spider closed (finished)
+2020-11-12 05:06:41 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-12 05:06:41 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-12 05:06:41 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-12 05:06:41 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-12 05:06:41 [scrapy.extensions.telnet] INFO: Telnet Password: 2cd3380afc896733
+2020-11-12 05:06:41 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2020-11-12 05:06:42 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-11-12 05:06:42 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-11-12 05:06:42 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2020-11-12 05:06:42 [scrapy.core.engine] INFO: Spider opened
+2020-11-12 05:06:42 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-11-12 05:06:42 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2020-11-12 05:06:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/u/491287> (referer: None)
+2020-11-12 05:06:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/1> (referer: https://www.fanfiction.net/u/491287)
+2020-11-12 05:06:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/2/Isolation> (referer: https://www.fanfiction.net/s/6291747/1)
+2020-11-12 05:06:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/3/Isolation> (referer: https://www.fanfiction.net/s/6291747/2/Isolation)
+2020-11-12 05:06:47 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/4/Isolation> (referer: https://www.fanfiction.net/s/6291747/3/Isolation)
+2020-11-12 05:06:47 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/5/Isolation> (referer: https://www.fanfiction.net/s/6291747/4/Isolation)
+2020-11-12 05:06:48 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/6/Isolation> (referer: https://www.fanfiction.net/s/6291747/5/Isolation)
+2020-11-12 05:06:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/7/Isolation> (referer: https://www.fanfiction.net/s/6291747/6/Isolation)
+2020-11-12 05:06:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/8/Isolation> (referer: https://www.fanfiction.net/s/6291747/7/Isolation)
+2020-11-12 05:06:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/9/Isolation> (referer: https://www.fanfiction.net/s/6291747/8/Isolation)
+2020-11-12 05:06:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/10/Isolation> (referer: https://www.fanfiction.net/s/6291747/9/Isolation)
+2020-11-12 05:06:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/11/Isolation> (referer: https://www.fanfiction.net/s/6291747/10/Isolation)
+2020-11-12 05:06:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/12/Isolation> (referer: https://www.fanfiction.net/s/6291747/11/Isolation)
+2020-11-12 05:06:53 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/13/Isolation> (referer: https://www.fanfiction.net/s/6291747/12/Isolation)
+2020-11-12 05:06:54 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/14/Isolation> (referer: https://www.fanfiction.net/s/6291747/13/Isolation)
+2020-11-12 05:06:54 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/15/Isolation> (referer: https://www.fanfiction.net/s/6291747/14/Isolation)
+2020-11-12 05:06:55 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/16/Isolation> (referer: https://www.fanfiction.net/s/6291747/15/Isolation)
+2020-11-12 05:06:56 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/17/Isolation> (referer: https://www.fanfiction.net/s/6291747/16/Isolation)
+2020-11-12 05:06:56 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/18/Isolation> (referer: https://www.fanfiction.net/s/6291747/17/Isolation)
+2020-11-12 05:06:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/19/Isolation> (referer: https://www.fanfiction.net/s/6291747/18/Isolation)
+2020-11-12 05:06:57 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/20/Isolation> (referer: https://www.fanfiction.net/s/6291747/19/Isolation)
+2020-11-12 05:06:58 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/21/Isolation> (referer: https://www.fanfiction.net/s/6291747/20/Isolation)
+2020-11-12 05:06:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/22/Isolation> (referer: https://www.fanfiction.net/s/6291747/21/Isolation)
+2020-11-12 05:06:59 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/23/Isolation> (referer: https://www.fanfiction.net/s/6291747/22/Isolation)
+2020-11-12 05:07:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/24/Isolation> (referer: https://www.fanfiction.net/s/6291747/23/Isolation)
+2020-11-12 05:07:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/25/Isolation> (referer: https://www.fanfiction.net/s/6291747/24/Isolation)
+2020-11-12 05:07:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/26/Isolation> (referer: https://www.fanfiction.net/s/6291747/25/Isolation)
+2020-11-12 05:07:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/27/Isolation> (referer: https://www.fanfiction.net/s/6291747/26/Isolation)
+2020-11-12 05:07:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/28/Isolation> (referer: https://www.fanfiction.net/s/6291747/27/Isolation)
+2020-11-12 05:07:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/29/Isolation> (referer: https://www.fanfiction.net/s/6291747/28/Isolation)
+2020-11-12 05:07:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/30/Isolation> (referer: https://www.fanfiction.net/s/6291747/29/Isolation)
+2020-11-12 05:07:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/31/Isolation> (referer: https://www.fanfiction.net/s/6291747/30/Isolation)
+2020-11-12 05:07:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/32/Isolation> (referer: https://www.fanfiction.net/s/6291747/31/Isolation)
+2020-11-12 05:07:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/33/Isolation> (referer: https://www.fanfiction.net/s/6291747/32/Isolation)
+2020-11-12 05:07:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/34/Isolation> (referer: https://www.fanfiction.net/s/6291747/33/Isolation)
+2020-11-12 05:07:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/35/Isolation> (referer: https://www.fanfiction.net/s/6291747/34/Isolation)
+2020-11-12 05:07:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/36/Isolation> (referer: https://www.fanfiction.net/s/6291747/35/Isolation)
+2020-11-12 05:07:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/37/Isolation> (referer: https://www.fanfiction.net/s/6291747/36/Isolation)
+2020-11-12 05:07:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/38/Isolation> (referer: https://www.fanfiction.net/s/6291747/37/Isolation)
+2020-11-12 05:07:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/39/Isolation> (referer: https://www.fanfiction.net/s/6291747/38/Isolation)
+2020-11-12 05:07:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/40/Isolation> (referer: https://www.fanfiction.net/s/6291747/39/Isolation)
+2020-11-12 05:07:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/41/Isolation> (referer: https://www.fanfiction.net/s/6291747/40/Isolation)
+2020-11-12 05:07:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/42/Isolation> (referer: https://www.fanfiction.net/s/6291747/41/Isolation)
+2020-11-12 05:07:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/43/Isolation> (referer: https://www.fanfiction.net/s/6291747/42/Isolation)
+2020-11-12 05:07:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/44/Isolation> (referer: https://www.fanfiction.net/s/6291747/43/Isolation)
+2020-11-12 05:07:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/45/Isolation> (referer: https://www.fanfiction.net/s/6291747/44/Isolation)
+2020-11-12 05:07:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/46/Isolation> (referer: https://www.fanfiction.net/s/6291747/45/Isolation)
+2020-11-12 05:07:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/47/Isolation> (referer: https://www.fanfiction.net/s/6291747/46/Isolation)
+2020-11-12 05:07:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/48/Isolation> (referer: https://www.fanfiction.net/s/6291747/47/Isolation)
+2020-11-12 05:07:15 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/49/Isolation> (referer: https://www.fanfiction.net/s/6291747/48/Isolation)
+2020-11-12 05:07:16 [scrapy.core.engine] INFO: Closing spider (finished)
+2020-11-12 05:07:16 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 14874,
+ 'downloader/request_count': 50,
+ 'downloader/request_method_count/GET': 50,
+ 'downloader/response_bytes': 1217808,
+ 'downloader/response_count': 50,
+ 'downloader/response_status_count/200': 50,
+ 'elapsed_time_seconds': 33.699872,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2020, 11, 12, 13, 7, 16, 38173),
+ 'log_count/DEBUG': 50,
+ 'log_count/INFO': 10,
+ 'request_depth_max': 49,
+ 'response_received_count': 50,
+ 'scheduler/dequeued': 50,
+ 'scheduler/dequeued/memory': 50,
+ 'scheduler/enqueued': 50,
+ 'scheduler/enqueued/memory': 50,
+ 'start_time': datetime.datetime(2020, 11, 12, 13, 6, 42, 338301)}
+2020-11-12 05:07:16 [scrapy.core.engine] INFO: Spider closed (finished)
+2020-11-12 05:15:09 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-12 05:15:09 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-12 05:15:09 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-12 05:15:09 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-12 05:15:09 [scrapy.extensions.telnet] INFO: Telnet Password: f14bfc1058a6e85a
+2020-11-12 05:15:09 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2020-11-12 05:15:09 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-11-12 05:15:09 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-11-12 05:15:09 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2020-11-12 05:15:09 [scrapy.core.engine] INFO: Spider opened
+2020-11-12 05:15:09 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-11-12 05:15:09 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2020-11-12 05:15:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/u/491287> (referer: None)
+2020-11-12 05:15:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/1> (referer: https://www.fanfiction.net/u/491287)
+2020-11-12 05:15:12 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/2/Isolation> (referer: https://www.fanfiction.net/s/6291747/1)
+2020-11-12 05:15:13 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/3/Isolation> (referer: https://www.fanfiction.net/s/6291747/2/Isolation)
+2020-11-12 05:15:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/4/Isolation> (referer: https://www.fanfiction.net/s/6291747/3/Isolation)
+2020-11-12 05:15:14 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/5/Isolation> (referer: https://www.fanfiction.net/s/6291747/4/Isolation)
+2020-11-12 05:15:15 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/6/Isolation> (referer: https://www.fanfiction.net/s/6291747/5/Isolation)
+2020-11-12 05:15:16 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/7/Isolation> (referer: https://www.fanfiction.net/s/6291747/6/Isolation)
+2020-11-12 05:15:16 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/8/Isolation> (referer: https://www.fanfiction.net/s/6291747/7/Isolation)
+2020-11-12 05:15:17 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/9/Isolation> (referer: https://www.fanfiction.net/s/6291747/8/Isolation)
+2020-11-12 05:15:18 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/10/Isolation> (referer: https://www.fanfiction.net/s/6291747/9/Isolation)
+2020-11-12 05:15:18 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/11/Isolation> (referer: https://www.fanfiction.net/s/6291747/10/Isolation)
+2020-11-12 05:15:19 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/12/Isolation> (referer: https://www.fanfiction.net/s/6291747/11/Isolation)
+2020-11-12 05:15:20 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/13/Isolation> (referer: https://www.fanfiction.net/s/6291747/12/Isolation)
+2020-11-12 05:15:20 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/14/Isolation> (referer: https://www.fanfiction.net/s/6291747/13/Isolation)
+2020-11-12 05:15:21 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/15/Isolation> (referer: https://www.fanfiction.net/s/6291747/14/Isolation)
+2020-11-12 05:15:22 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/16/Isolation> (referer: https://www.fanfiction.net/s/6291747/15/Isolation)
+2020-11-12 05:15:22 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/17/Isolation> (referer: https://www.fanfiction.net/s/6291747/16/Isolation)
+2020-11-12 05:15:23 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/18/Isolation> (referer: https://www.fanfiction.net/s/6291747/17/Isolation)
+2020-11-12 05:15:23 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/19/Isolation> (referer: https://www.fanfiction.net/s/6291747/18/Isolation)
+2020-11-12 05:15:24 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/20/Isolation> (referer: https://www.fanfiction.net/s/6291747/19/Isolation)
+2020-11-12 05:15:25 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/21/Isolation> (referer: https://www.fanfiction.net/s/6291747/20/Isolation)
+2020-11-12 05:15:25 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/22/Isolation> (referer: https://www.fanfiction.net/s/6291747/21/Isolation)
+2020-11-12 05:15:26 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/23/Isolation> (referer: https://www.fanfiction.net/s/6291747/22/Isolation)
+2020-11-12 05:15:26 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/24/Isolation> (referer: https://www.fanfiction.net/s/6291747/23/Isolation)
+2020-11-12 05:15:27 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/25/Isolation> (referer: https://www.fanfiction.net/s/6291747/24/Isolation)
+2020-11-12 05:15:27 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/26/Isolation> (referer: https://www.fanfiction.net/s/6291747/25/Isolation)
+2020-11-12 05:15:28 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/27/Isolation> (referer: https://www.fanfiction.net/s/6291747/26/Isolation)
+2020-11-12 05:15:29 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/28/Isolation> (referer: https://www.fanfiction.net/s/6291747/27/Isolation)
+2020-11-12 05:15:29 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/29/Isolation> (referer: https://www.fanfiction.net/s/6291747/28/Isolation)
+2020-11-12 05:15:30 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/30/Isolation> (referer: https://www.fanfiction.net/s/6291747/29/Isolation)
+2020-11-12 05:15:30 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/31/Isolation> (referer: https://www.fanfiction.net/s/6291747/30/Isolation)
+2020-11-12 05:15:31 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/32/Isolation> (referer: https://www.fanfiction.net/s/6291747/31/Isolation)
+2020-11-12 05:15:32 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/33/Isolation> (referer: https://www.fanfiction.net/s/6291747/32/Isolation)
+2020-11-12 05:15:32 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/34/Isolation> (referer: https://www.fanfiction.net/s/6291747/33/Isolation)
+2020-11-12 05:15:33 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/35/Isolation> (referer: https://www.fanfiction.net/s/6291747/34/Isolation)
+2020-11-12 05:15:34 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/36/Isolation> (referer: https://www.fanfiction.net/s/6291747/35/Isolation)
+2020-11-12 05:15:34 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/37/Isolation> (referer: https://www.fanfiction.net/s/6291747/36/Isolation)
+2020-11-12 05:15:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/38/Isolation> (referer: https://www.fanfiction.net/s/6291747/37/Isolation)
+2020-11-12 05:15:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/39/Isolation> (referer: https://www.fanfiction.net/s/6291747/38/Isolation)
+2020-11-12 05:15:36 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/40/Isolation> (referer: https://www.fanfiction.net/s/6291747/39/Isolation)
+2020-11-12 05:15:37 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/41/Isolation> (referer: https://www.fanfiction.net/s/6291747/40/Isolation)
+2020-11-12 05:15:37 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/42/Isolation> (referer: https://www.fanfiction.net/s/6291747/41/Isolation)
+2020-11-12 05:15:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/43/Isolation> (referer: https://www.fanfiction.net/s/6291747/42/Isolation)
+2020-11-12 05:15:39 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/44/Isolation> (referer: https://www.fanfiction.net/s/6291747/43/Isolation)
+2020-11-12 05:15:39 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/45/Isolation> (referer: https://www.fanfiction.net/s/6291747/44/Isolation)
+2020-11-12 05:15:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/46/Isolation> (referer: https://www.fanfiction.net/s/6291747/45/Isolation)
+2020-11-12 05:15:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/47/Isolation> (referer: https://www.fanfiction.net/s/6291747/46/Isolation)
+2020-11-12 05:15:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/48/Isolation> (referer: https://www.fanfiction.net/s/6291747/47/Isolation)
+2020-11-12 05:15:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/49/Isolation> (referer: https://www.fanfiction.net/s/6291747/48/Isolation)
+2020-11-12 05:15:42 [scrapy.core.engine] INFO: Closing spider (finished)
+2020-11-12 05:15:42 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 14874,
+ 'downloader/request_count': 50,
+ 'downloader/request_method_count/GET': 50,
+ 'downloader/response_bytes': 1217809,
+ 'downloader/response_count': 50,
+ 'downloader/response_status_count/200': 50,
+ 'elapsed_time_seconds': 32.895953,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2020, 11, 12, 13, 15, 42, 788391),
+ 'log_count/DEBUG': 50,
+ 'log_count/INFO': 10,
+ 'request_depth_max': 49,
+ 'response_received_count': 50,
+ 'scheduler/dequeued': 50,
+ 'scheduler/dequeued/memory': 50,
+ 'scheduler/enqueued': 50,
+ 'scheduler/enqueued/memory': 50,
+ 'start_time': datetime.datetime(2020, 11, 12, 13, 15, 9, 892438)}
+2020-11-12 05:15:42 [scrapy.core.engine] INFO: Spider closed (finished)
+2020-11-12 05:26:19 [scrapy.utils.log] INFO: Scrapy 2.2.0 started (bot: ff_archive)
+2020-11-12 05:26:19 [scrapy.utils.log] INFO: Versions: lxml 4.5.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.7.7 (default, May  6 2020, 11:45:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1g  21 Apr 2020), cryptography 2.9.2, Platform Windows-10-10.0.18362-SP0
+2020-11-12 05:26:19 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-11-12 05:26:19 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ff_archive',
+ 'LOG_FILE': 'C:/Users/obaid/Py '
+             'Projects/ffarchive_py/ff_archive/ff_archive/spiders/output.txt',
+ 'LOG_STDOUT': True,
+ 'NEWSPIDER_MODULE': 'ff_archive.spiders',
+ 'SPIDER_MODULES': ['ff_archive.spiders']}
+2020-11-12 05:26:19 [scrapy.extensions.telnet] INFO: Telnet Password: 3f99d67ac092fca0
+2020-11-12 05:26:19 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2020-11-12 05:26:20 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-11-12 05:26:20 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-11-12 05:26:20 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2020-11-12 05:26:20 [scrapy.core.engine] INFO: Spider opened
+2020-11-12 05:26:20 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-11-12 05:26:20 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2020-11-12 05:26:21 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/u/491287> (referer: None)
+2020-11-12 05:26:22 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/1> (referer: https://www.fanfiction.net/u/491287)
+2020-11-12 05:26:23 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/2/Isolation> (referer: https://www.fanfiction.net/s/6291747/1)
+2020-11-12 05:26:23 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/3/Isolation> (referer: https://www.fanfiction.net/s/6291747/2/Isolation)
+2020-11-12 05:26:24 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/4/Isolation> (referer: https://www.fanfiction.net/s/6291747/3/Isolation)
+2020-11-12 05:26:25 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/5/Isolation> (referer: https://www.fanfiction.net/s/6291747/4/Isolation)
+2020-11-12 05:26:25 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/6/Isolation> (referer: https://www.fanfiction.net/s/6291747/5/Isolation)
+2020-11-12 05:26:26 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/7/Isolation> (referer: https://www.fanfiction.net/s/6291747/6/Isolation)
+2020-11-12 05:26:27 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/8/Isolation> (referer: https://www.fanfiction.net/s/6291747/7/Isolation)
+2020-11-12 05:26:27 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/9/Isolation> (referer: https://www.fanfiction.net/s/6291747/8/Isolation)
+2020-11-12 05:26:28 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/10/Isolation> (referer: https://www.fanfiction.net/s/6291747/9/Isolation)
+2020-11-12 05:26:29 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/11/Isolation> (referer: https://www.fanfiction.net/s/6291747/10/Isolation)
+2020-11-12 05:26:29 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/12/Isolation> (referer: https://www.fanfiction.net/s/6291747/11/Isolation)
+2020-11-12 05:26:30 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/13/Isolation> (referer: https://www.fanfiction.net/s/6291747/12/Isolation)
+2020-11-12 05:26:31 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/14/Isolation> (referer: https://www.fanfiction.net/s/6291747/13/Isolation)
+2020-11-12 05:26:31 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/15/Isolation> (referer: https://www.fanfiction.net/s/6291747/14/Isolation)
+2020-11-12 05:26:32 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/16/Isolation> (referer: https://www.fanfiction.net/s/6291747/15/Isolation)
+2020-11-12 05:26:33 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/17/Isolation> (referer: https://www.fanfiction.net/s/6291747/16/Isolation)
+2020-11-12 05:26:33 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/18/Isolation> (referer: https://www.fanfiction.net/s/6291747/17/Isolation)
+2020-11-12 05:26:34 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/19/Isolation> (referer: https://www.fanfiction.net/s/6291747/18/Isolation)
+2020-11-12 05:26:34 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/20/Isolation> (referer: https://www.fanfiction.net/s/6291747/19/Isolation)
+2020-11-12 05:26:35 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/21/Isolation> (referer: https://www.fanfiction.net/s/6291747/20/Isolation)
+2020-11-12 05:26:36 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/22/Isolation> (referer: https://www.fanfiction.net/s/6291747/21/Isolation)
+2020-11-12 05:26:36 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/23/Isolation> (referer: https://www.fanfiction.net/s/6291747/22/Isolation)
+2020-11-12 05:26:37 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/24/Isolation> (referer: https://www.fanfiction.net/s/6291747/23/Isolation)
+2020-11-12 05:26:37 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/25/Isolation> (referer: https://www.fanfiction.net/s/6291747/24/Isolation)
+2020-11-12 05:26:38 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/26/Isolation> (referer: https://www.fanfiction.net/s/6291747/25/Isolation)
+2020-11-12 05:26:39 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/27/Isolation> (referer: https://www.fanfiction.net/s/6291747/26/Isolation)
+2020-11-12 05:26:39 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/28/Isolation> (referer: https://www.fanfiction.net/s/6291747/27/Isolation)
+2020-11-12 05:26:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/29/Isolation> (referer: https://www.fanfiction.net/s/6291747/28/Isolation)
+2020-11-12 05:26:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/30/Isolation> (referer: https://www.fanfiction.net/s/6291747/29/Isolation)
+2020-11-12 05:26:41 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/31/Isolation> (referer: https://www.fanfiction.net/s/6291747/30/Isolation)
+2020-11-12 05:26:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/32/Isolation> (referer: https://www.fanfiction.net/s/6291747/31/Isolation)
+2020-11-12 05:26:42 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/33/Isolation> (referer: https://www.fanfiction.net/s/6291747/32/Isolation)
+2020-11-12 05:26:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/34/Isolation> (referer: https://www.fanfiction.net/s/6291747/33/Isolation)
+2020-11-12 05:26:43 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/35/Isolation> (referer: https://www.fanfiction.net/s/6291747/34/Isolation)
+2020-11-12 05:26:44 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/36/Isolation> (referer: https://www.fanfiction.net/s/6291747/35/Isolation)
+2020-11-12 05:26:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/37/Isolation> (referer: https://www.fanfiction.net/s/6291747/36/Isolation)
+2020-11-12 05:26:45 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/38/Isolation> (referer: https://www.fanfiction.net/s/6291747/37/Isolation)
+2020-11-12 05:26:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/39/Isolation> (referer: https://www.fanfiction.net/s/6291747/38/Isolation)
+2020-11-12 05:26:46 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/40/Isolation> (referer: https://www.fanfiction.net/s/6291747/39/Isolation)
+2020-11-12 05:26:47 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/41/Isolation> (referer: https://www.fanfiction.net/s/6291747/40/Isolation)
+2020-11-12 05:26:48 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/42/Isolation> (referer: https://www.fanfiction.net/s/6291747/41/Isolation)
+2020-11-12 05:26:48 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/43/Isolation> (referer: https://www.fanfiction.net/s/6291747/42/Isolation)
+2020-11-12 05:26:49 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/44/Isolation> (referer: https://www.fanfiction.net/s/6291747/43/Isolation)
+2020-11-12 05:26:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/45/Isolation> (referer: https://www.fanfiction.net/s/6291747/44/Isolation)
+2020-11-12 05:26:50 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/46/Isolation> (referer: https://www.fanfiction.net/s/6291747/45/Isolation)
+2020-11-12 05:26:51 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/47/Isolation> (referer: https://www.fanfiction.net/s/6291747/46/Isolation)
+2020-11-12 05:26:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/48/Isolation> (referer: https://www.fanfiction.net/s/6291747/47/Isolation)
+2020-11-12 05:26:52 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.fanfiction.net/s/6291747/49/Isolation> (referer: https://www.fanfiction.net/s/6291747/48/Isolation)
+2020-11-12 05:26:53 [scrapy.core.engine] INFO: Closing spider (finished)
+2020-11-12 05:26:53 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 14874,
+ 'downloader/request_count': 50,
+ 'downloader/request_method_count/GET': 50,
+ 'downloader/response_bytes': 1217814,
+ 'downloader/response_count': 50,
+ 'downloader/response_status_count/200': 50,
+ 'elapsed_time_seconds': 32.550073,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2020, 11, 12, 13, 26, 53, 62392),
+ 'log_count/DEBUG': 50,
+ 'log_count/INFO': 10,
+ 'request_depth_max': 49,
+ 'response_received_count': 50,
+ 'scheduler/dequeued': 50,
+ 'scheduler/dequeued/memory': 50,
+ 'scheduler/enqueued': 50,
+ 'scheduler/enqueued/memory': 50,
+ 'start_time': datetime.datetime(2020, 11, 12, 13, 26, 20, 512319)}
+2020-11-12 05:26:53 [scrapy.core.engine] INFO: Spider closed (finished)
