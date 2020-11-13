@@ -3,3 +3,6 @@ ff_archive/ff_archive/archive.html
 *.pyc
 *.pyc
 *.jsonl
+*.pyc
+ff_archive/ff_archive/spiders/__pycache__/ffn_importer.cpython-37.pyc
+*.txt

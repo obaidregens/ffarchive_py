@@ -490,24 +490,25 @@ class ffnImporter(scrapy.Spider):
         currentChapter = int(chapterArr[0])
         title = chapterArr[1]
         cont = ''.join(response.css('#storytext > p,#storytext > hr').getall())
-        # Strip Div Tag Cleaner adds
-        cont = cleaner.clean_html(cont)[5:-6]
-        storyData['Chapters'].append({
-            "title"     : title,
-            "content"   : cont,
-            "wordCount" : str_word_count( " ".join(response.css("#storytext > p::text").getall() )),
-        })
-        next_btn = response.css('#chap_select + button.btn::attr(onclick)').get()
-        if storyData["Tags"]["Chapters"] > currentChapter and next_btn is not None:
-            yield response.follow(
-                next_btn.replace('self.location=\'','').rstrip('\''),
-                callback = self.parseChapter,
-                cb_kwargs = {
-                    "storyData"         : storyData,
-                }
-            )
-        else:
-            insertStory(storyData)
+        if len(cont) > 0:
+            # Strip Div Tag Cleaner adds
+            cont = cleaner.clean_html(cont)[5:-6]
+            storyData['Chapters'].append({
+                "title"     : title,
+                "content"   : cont,
+                "wordCount" : str_word_count( " ".join(response.css("#storytext > p::text").getall() )),
+            })
+            next_btn = response.css('#chap_select + button.btn::attr(onclick)').get()
+            if storyData["Tags"]["Chapters"] > currentChapter and next_btn is not None:
+                yield response.follow(
+                    next_btn.replace('self.location=\'','').rstrip('\''),
+                    callback = self.parseChapter,
+                    cb_kwargs = {
+                        "storyData"         : storyData,
+                    }
+                )
+            else:
+                insertStory(storyData)
     def closed(self, reason):
         updateTermsCount()
 # Run "scrapy crawl ffn" to test

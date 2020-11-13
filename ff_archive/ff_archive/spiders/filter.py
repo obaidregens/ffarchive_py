@@ -6,9 +6,9 @@ with open(out_dir + "UserData.jsonl", "r") as dump_file:
 newer_dump = ""
 for line in L:
     user = json.loads(line)
-    if (user["total_favs"] < 300) and (user["total_follows"] < 300):
+    if (user["total_favs"] < 200) and (user["total_follows"] < 200):
         continue
-    if user["total_stories"] > 2 and user["total_favs"] < 600 and user["total_follows"] < 600:
+    if user["total_stories"] > 2 and user["total_favs"] < 450 and user["total_follows"] < 450:
         continue
     newer_dump += json.dumps(user) + "\n"
 with open(out_dir + "UserDataFiltered.jsonl", "w+") as dump_file:
