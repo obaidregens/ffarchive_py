@@ -92,4 +92,4 @@ ROBOTSTXT_OBEY = False
 # Logs
 
 LOG_STDOUT = True
-LOG_FILE = "C:/Users/obaid/Py Projects/ffarchive_py/ff_archive/ff_archive/spiders/output.txt"
+LOG_FILE = "C:/Users/obaid/Py-Projects/ffarchive_py/ff_archive/ff_archive/spiders/output.txt"

@@ -60,10 +60,11 @@ def verify_connection(user,code_ID):
     for meta in metas:
         book_ids.append(str(meta[0]))
     
-    db.execute(
-        "UPDATE wp_posts SET post_author = %s WHERE ID IN(" + ",".join(['%s'] * len(book_ids)) + ")",
-        [str(connection_row[1])] + map(str,book_ids)
-    )
+    if len(book_ids) > 0:
+        db.execute(
+            "UPDATE wp_posts SET post_author = %s WHERE ID IN(" + ",".join(['%s'] * len(book_ids)) + ")",
+            [str(connection_row[1])] + list(map(str,book_ids))
+        )
     sql_connection.commit()
 
 class ffnVerification(scrapy.Spider):

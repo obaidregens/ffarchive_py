@@ -33,7 +33,7 @@ def dbInsert(table,insertData):
 letter = """
 Hi ###USERNAME###! :)
 
-We've created a site at Fanfiction Online {fanfiction (dot) online} for reading and writing fanfiction, since we feel FFN (and other sites) are really outdated and lack a lot of stuff.
+We've created a site at Fanfiction Online {fanfiction . online} for reading and writing fanfiction, since we feel FFN (and other sites) are really outdated and lack a lot of stuff.
 
 Would love if you could post your stories there. You can reach new readers, and since the site has better reading, your current readers will read your fanfics more comfortably as well.
 
@@ -43,13 +43,13 @@ Thanks! Let me know if you have any questions.
 """
 letter_subject = "Hi ###USERNAME###! :)"
 
-out_file = "C:/Users/obaid/Py Projects/ffarchive_py/ff_archive/ff_archive/spiders/UserData.jsonl"
+out_file = "C:/Users/obaid/Py-Projects/ffarchive_py/ff_archive/ff_archive/spiders/UserData.jsonl"
 
 class ffnAllowMessages(scrapy.Spider):
 
     name = "ffn_outreach"
     custom_settings = {
-        "LOG_FILE": "C:/Users/obaid/Py Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-get.txt"
+        "LOG_FILE": "C:/Users/obaid/Py-Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-get.txt"
     }
     start_urls = ["https://www.fanfiction.net/" + url + "?&srt=5&r=10&t=4" for url in [
         "book/Harry-Potter/",
@@ -63,7 +63,7 @@ class ffnAllowMessages(scrapy.Spider):
     ]]
     last_sent = 0
     cookies = settings.creds["ffn-authorPM"]["cookies"]
-    max_pages = 20
+    max_pages = 50
     def parse(self, response):
         for book in response.css('#content_wrapper_inner > div.z-list'):
             Author_ID = int(book.css("a[href^='/u']::attr(href)").get().split('/')[2])
@@ -218,7 +218,7 @@ class ffnAllowMessages(scrapy.Spider):
 class ffnOutreachSender(scrapy.Spider):
     name = "outreach_sender"
     custom_settings = {
-        "LOG_FILE": "C:/Users/obaid/Py Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt",
+        "LOG_FILE": "C:/Users/obaid/Py-Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt",
         "dont_filter": True
     }
     last_sent = {}

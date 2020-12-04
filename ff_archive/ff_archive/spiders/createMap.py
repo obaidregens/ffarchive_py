@@ -68,7 +68,9 @@ class createMap(scrapy.Spider):
             if (count[-1] == "K"):
                 count = float(count[:-1])*1000
             count = int(count)
-            fandomName = fandom_link.attrib["title"]
+            fandomName = fandom.css("a::text").get()
+            if "'" in fandomName:
+                print("----------------->>>>>" + fandomName)
             if not (self.mapper.pursue(fandomName,count)):
                 continue
             yield response.follow(

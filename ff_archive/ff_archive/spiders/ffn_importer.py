@@ -122,9 +122,9 @@ def parseStory(storyBlock):
     if raw_tags_string[:12] == "Crossover - ":
         raw_tags_string = raw_tags_string[12:]
     # Remove Fandom
-    raw_tags_string = raw_tags_string[len(storyBlock.attrib["data-category"]) + len(" - "):]
+    raw_tags_string = raw_tags_string[len(storyBlock.attrib["data-category"].replace("\\'","'")) + len(" - "):]
 
-    raw_tags = raw_tags_string.split(' - ')
+    raw_tags = raw_tags_string.split(' - ')    
     tags = {}
 
     tags['Language'] = raw_tags.pop(1)
@@ -181,6 +181,10 @@ def insertStory(story):
             print(fandomName)
             print('Fandom not found')
             return
+        if '"' in fandom or '+' in fandom:
+            print(fandomName)
+            print('Fandom has either `+` or `"` ')
+            return
         fandomOfName[fandomName] = fandom
         for characterName in story["Tags"].get("All Characters",[]):
             if characterName not in fandom["characters"]:
@@ -189,15 +193,28 @@ def insertStory(story):
             if (fandomName not in characterOfFandoms):
                 characterOfFandoms[fandomName] = []
             characterOfFandoms[fandomName].append(characterName)
-    if sorted(list(character_fandoms.keys())) != sorted((story["Tags"].get("All Characters",[]))):
+    if sorted(list(character_fandoms.keys())) != sorted( list(set(story["Tags"].get("All Characters",[]))) ):
         print( ",".join(character_fandoms.keys()) + " != " + ",".join(story["Tags"]["All Characters"]) )
         return
     # Both of the above returns indicate that something has not been found in mapper
+
+    # Check if all required Tags are present
+    for tagNameReq in ["Status","Rated","Language"]:
+        if tagNameReq not in story["Tags"]:
+            print("Required Tag Name not present")
+            return
+
+    # Now confirm if rating is proper
+    if story["Tags"]["Rated"] not in rating_map:
+        print("Rating not valid")
+        print("Rated: " + story["Tags"]["Rated"])
+        return
 
     author_ID = str(story["Author ID"])
     user_id = authorIds[author_ID]["user_id"]
     date = datetime.datetime.fromtimestamp(story["Published"]).strftime('%Y-%m-%d %H:%M:%S')
     modified = date
+    current_time = int(time.time())
     if ("Updated" in story):
         modified = datetime.datetime.fromtimestamp(story["Updated"]).strftime('%Y-%m-%d %H:%M:%S')
     if (story["Existing"] == False):
@@ -210,7 +227,9 @@ def insertStory(story):
         metaVal = [
             (storyID,'author_name',story["Author Name"]),
             (storyID,'ffn_author_id',author_ID),
-            (storyID,'ffn_book_id',story["_id"])
+            (storyID,'ffn_book_id',story["_id"]),
+            (storyID,'first_publish',story["Published"]),
+            (storyID,'last_edited',current_time)
         ]
         # Add Tags
         # Tags - Fandom
@@ -247,7 +266,7 @@ def insertStory(story):
         SET import_status='live', story_id=%s, import_time=%s, import_favs=%s,import_follows=%s
         WHERE import_from='ffn' AND import_story=%s 
         """
-        db.execute(updateImport,[storyID,int(time.time()),story["Tags"].get("Favs",0),story["Tags"].get("Follows",0),story["_id"]])
+        db.execute(updateImport,[storyID,current_time,story["Tags"].get("Favs",0),story["Tags"].get("Follows",0),story["_id"]])
     else:
         # Update Story Time as per FFN for Updating and Reimporting Stories
         storyID = int(story["Existing"])
@@ -333,6 +352,9 @@ def insertStory(story):
             metaVal.append((chapterID,'chapter_order',chapterIndex))
             chapterIndex += 1
     
+    # Insert Story and Chapter Meta
+    if story["Existing"] == False:
+        metaVal.append((storyID,'word-count',totalWords))
     metaSql = "INSERT INTO wp_postmeta (post_id,meta_key,meta_value) VALUES (%s, %s, %s)"
     db.executemany(metaSql,metaVal)
 
@@ -344,26 +366,33 @@ def insertStory(story):
                 """
                 INSERT INTO notifications (user_id,notification_type,type_of,type_of_id,type_by,type_by_id,email_status,timestamp)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",
-                [user_id,'stories_imported','user',user_id,'ffn_user',author_ID,'none',time.time()]
+                [user_id,'stories_imported','user',user_id,'ffn_user',author_ID,'none',current_time]
             )
         sql_connection.commit()
-    # Update Words
-    db.execute("""
-    SELECT SUM(wp_postmeta.meta_value) as c FROM wp_postmeta
-    INNER JOIN wp_posts ON wp_posts.ID = wp_postmeta.post_id
-    WHERE wp_postmeta.meta_key = 'word-count'
-    AND wp_posts.post_parent = %s
-    """,[storyID])
-    word_count = int(db.fetchone()[0])
-    db.execute("""
-    UPDATE wp_postmeta
-    SET meta_value = %s
-    WHERE post_id=%s AND meta_key="word-count"
-    """,[word_count,storyID])
+    if story["Existing"] != False:
+        # Update Words
+        db.execute("""
+        SELECT SUM(wp_postmeta.meta_value) as c FROM wp_postmeta
+        INNER JOIN wp_posts ON wp_posts.ID = wp_postmeta.post_id
+        WHERE wp_postmeta.meta_key = 'word-count'
+        AND wp_posts.post_parent = %s
+        """,[storyID])
+        word_count = int(db.fetchone()[0])
+        db.execute("""
+        UPDATE wp_postmeta
+        SET meta_value = %s
+        WHERE post_id=%s AND meta_key="word-count"
+        """,[word_count,storyID])
+        db.execute("""
+        UPDATE wp_postmeta
+        SET meta_value = %s
+        WHERE post_id=%s AND meta_key="last_edited"
+        """,[current_time,storyID])
     sql_connection.commit()
 def sqlPlaceholder(l):
     return ",".join(['%s'] * l )
 def insertPairing(storyID,characters):
+    characters = list(set(characters))
     if len(characters) < 2:
         return False
     db.execute("SELECT pairing_id,character_id FROM character_pairings")
@@ -390,15 +419,18 @@ def insertPairing(storyID,characters):
             pp = int(existsPair[0])+1
         sql = "INSERT INTO character_pairings (pairing_id, character_id) VALUES " + ",".join( ["('" + str(pp) + "', %s)"] * len(characters) )
         db.execute(sql,characters)
-    dbInsert(
-        'pairing_relationships',
-        {
-            'pairing_id'    : pp,
-            'book_id'       : storyID,
-            'priority'      : 'major',
-            'added_time'    : int(time.time())
-        }
-    )
+    try:
+        dbInsert(
+            'pairing_relationships',
+            {
+                'pairing_id'    : pp,
+                'book_id'       : storyID,
+                'priority'      : 'major',
+                'added_time'    : int(time.time())
+            }
+        )
+    except:
+        pass
     return int(pp)
 def dbInsert(table,insertData):
     sql = "INSERT INTO " + table + " (" + ",".join(insertData.keys()) + ")" + " VALUES (" + sqlPlaceholder(len(insertData)) + ")"
@@ -509,6 +541,8 @@ class ffnImporter(scrapy.Spider):
                 )
             else:
                 insertStory(storyData)
+        else:
+            print("Chapter Error")
     def closed(self, reason):
         updateTermsCount()
 # Run "scrapy crawl ffn" to test
