@@ -1,3 +1,5 @@
+from urllib.parse import urlparse
+
 # Define here the models for your spider middleware
 #
 # See documentation in:
@@ -118,5 +120,13 @@ class FFArchiveProxyMiddleware:
             request.meta["proxy"] = spider.settings[SpiderProxySetting]
         if SpiderAgentSetting in spider.settings:
             request.headers["User-Agent"] = spider.settings[SpiderAgentSetting]
-
+        
+        if "173.205.184.7" in request.url:
+            request.headers["Host"] = "www.fanfiction.net"
+        elif "fanfiction.net" in request.url:
+            path = urlparse(request.url).path
+            request = request.replace(url="https://173.205.184.7" +  path)
+            request.headers["Host"] = "www.fanfiction.net"
+            return request
+        
         # raise exceptions.IgnoreRequest("We're done")
