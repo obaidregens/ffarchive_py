@@ -2,7 +2,8 @@
     "db": {
         "name": "ffonline",
         "user": "root",
-        "password": ""
+        "password": "root",
+        "port": 8889
     },
     "crawl": {
         "max_pages": 20,

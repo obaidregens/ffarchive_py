@@ -22,7 +22,8 @@ sql_connection = mysql.connector.connect(
   host = "localhost",
   user = settings.db["user"],
   password = settings.db["password"],
-  database = settings.db["name"]
+  database = settings.db["name"],
+  port = settings.db.get("port",3306)
 )
 db = sql_connection.cursor()
 rating_map = {
@@ -544,5 +545,6 @@ class ffnImporter(scrapy.Spider):
         else:
             print("Chapter Error")
     def closed(self, reason):
+        print("Closed")
         updateTermsCount()
 # Run "scrapy crawl ffn" to test

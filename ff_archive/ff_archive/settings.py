@@ -51,9 +51,9 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
+# DOWNLOADER_MIDDLEWARES = {
 #    'ff_archive.middlewares.FfArchiveDownloaderMiddleware': 543,
-#}
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -91,5 +91,39 @@ ROBOTSTXT_OBEY = False
 
 # Logs
 
+CRAWLER_DIR = "/Users/obaid/Documents/py-projects/ffarchive_py/ff_archive/ff_archive/"
+
 LOG_STDOUT = True
-LOG_FILE = "C:/Users/obaid/Py-Projects/ffarchive_py/ff_archive/ff_archive/spiders/output.txt"
+LOG_FILE = CRAWLER_DIR + "spiders/output.txt"
+
+# Randomize
+
+# pip3 install scrapy-rotating-proxies
+# pip3 install scrapy-fake-useragent
+
+# DOWNLOAD_DELAY = 0
+# CONCURRENT_REQUESTS_PER_DOMAIN = 12
+
+IMPORTER_PROXY = "66.175.216.110:3128"
+IMPORTER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
+
+VERIFICATION_PROXY = "172.105.102.90:3128"
+VERIFICATION_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15"
+
+ALL_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"
+
+# ROTATING_PROXY_LIST = [
+#     '66.175.216.110:3128'
+# ]
+
+# ROTATING_PROXY_CLOSE_SPIDER = True
+
+DOWNLOADER_MIDDLEWARES = {
+    # 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    # 'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
+    # 'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
+    # 'scrapy_fake_useragent.middleware.RetryUserAgentMiddleware': 401,
+    'ff_archive.middlewares.FFArchiveProxyMiddleware': 543,
+    # 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
+    # 'rotating_proxies.middlewares.BanDetectionMiddleware': 620
+}

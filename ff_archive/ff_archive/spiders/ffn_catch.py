@@ -18,7 +18,8 @@ sql_connection = mysql.connector.connect(
     host = "localhost",
     user = settings.db["user"],
     password = settings.db["password"],
-    database = settings.db["name"]
+    database = settings.db["name"],
+    port = settings.db.get("port",3306)
 )
 db = sql_connection.cursor()
 

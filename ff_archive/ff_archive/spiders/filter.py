@@ -1,14 +1,13 @@
-
 import json
-out_dir = "C:/Users/obaid/Py-Projects/ffarchive_py/ff_archive/ff_archive/spiders/"
+out_dir = "/Users/obaid/Documents/py-projects/ffarchive_py/ff_archive/ff_archive/spiders/"
 with open(out_dir + "UserData.jsonl", "r") as dump_file:
     L = dump_file.readlines()
 newer_dump = ""
 for line in L:
     user = json.loads(line)
-    if (user["total_favs"] < 300) and (user["total_follows"] < 300):
+    if (user["total_favs"] < 250) and (user["total_follows"] < 250):
         continue
-    if user["total_stories"] > 2 and user["total_favs"] < 600 and user["total_follows"] < 600:
+    if user["total_stories"] > 2 and user["total_favs"] < 500 and user["total_follows"] < 500:
         continue
     newer_dump += json.dumps(user) + "\n"
 with open(out_dir + "UserDataFiltered.jsonl", "w+") as dump_file:

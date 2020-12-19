@@ -4,6 +4,7 @@
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+from scrapy import exceptions
 
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
@@ -101,3 +102,21 @@ class FfArchiveDownloaderMiddleware:
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+class FFArchiveProxyMiddleware:
+    def process_request(self, request, spider):
+        SpiderProxySetting = ""
+        SpiderAgentSetting = "ALL_UA"
+        if spider.name == "ffn_importer":
+            SpiderProxySetting = "IMPORTER_PROXY"
+            SpiderAgentSetting = "IMPORTER_UA"
+        elif spider.name == "ffn_verification":
+            SpiderProxySetting = "VERIFICATION_PROXY"
+            SpiderAgentSetting = "VERIFICATION_UA"
+
+        if SpiderProxySetting in spider.settings:
+            request.meta["proxy"] = spider.settings[SpiderProxySetting]
+        if SpiderAgentSetting in spider.settings:
+            request.headers["User-Agent"] = spider.settings[SpiderAgentSetting]
+
+        # raise exceptions.IgnoreRequest("We're done")

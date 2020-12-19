@@ -12,7 +12,8 @@ sql_connection = mysql.connector.connect(
     host = "localhost",
     user = settings.db["user"],
     password = settings.db["password"],
-    database = settings.db["name"]
+    database = settings.db["name"],
+    port = settings.db.get("port",3306)
 )
 db = sql_connection.cursor()
  
@@ -43,13 +44,13 @@ Thanks! Let me know if you have any questions.
 """
 letter_subject = "Hi ###USERNAME###! :)"
 
-out_file = "C:/Users/obaid/Py-Projects/ffarchive_py/ff_archive/ff_archive/spiders/UserData.jsonl"
+out_file = "/Users/obaid/Documents/py-projects/ffarchive_py/ff_archive/ff_archive/spiders/UserData.jsonl"
 
 class ffnAllowMessages(scrapy.Spider):
 
     name = "ffn_outreach"
     custom_settings = {
-        "LOG_FILE": "C:/Users/obaid/Py-Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-get.txt"
+        "LOG_FILE": "/Users/obaid/Documents/py-projects/ffarchive_py/ff_archive/ff_archive/spiders/output-get.txt"
     }
     start_urls = ["https://www.fanfiction.net/" + url + "?&srt=5&r=10&t=4" for url in [
         "book/Harry-Potter/",
@@ -218,7 +219,7 @@ class ffnAllowMessages(scrapy.Spider):
 class ffnOutreachSender(scrapy.Spider):
     name = "outreach_sender"
     custom_settings = {
-        "LOG_FILE": "C:/Users/obaid/Py-Projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt",
+        "LOG_FILE": "/Users/obaid/Documents/py-projects/ffarchive_py/ff_archive/ff_archive/spiders/output-sender.txt",
         "dont_filter": True
     }
     last_sent = {}
