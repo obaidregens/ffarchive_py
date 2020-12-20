@@ -121,9 +121,7 @@ class FFArchiveProxyMiddleware:
         if SpiderAgentSetting in spider.settings:
             request.headers["User-Agent"] = spider.settings[SpiderAgentSetting]
         
-        if "173.205.184.7" in request.url:
-            request.headers["Host"] = "www.fanfiction.net"
-        elif "fanfiction.net" in request.url:
+        if spider.name == "ffn_importer" and request.headers.get("Host","").decode() != "www.fanfiction.net":
             path = urlparse(request.url).path
             request = request.replace(url="https://173.205.184.7" +  path)
             request.headers["Host"] = "www.fanfiction.net"

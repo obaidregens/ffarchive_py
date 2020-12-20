@@ -94,7 +94,7 @@ ROBOTSTXT_OBEY = False
 CRAWLER_DIR = "/Users/obaid/Documents/py-projects/ffarchive_py/ff_archive/ff_archive/"
 
 LOG_STDOUT = True
-LOG_FILE = CRAWLER_DIR + "spiders/output.txt"
+# LOG_FILE = CRAWLER_DIR + "spiders/output.txt"
 
 # Randomize
 
