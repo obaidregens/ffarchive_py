@@ -10,6 +10,9 @@ import ff_archive.spiders.crawl_settings as crawl_settings
 import sqlite3
 import lxml.html.clean as clean
 
+from scrapy.utils.project import get_project_settings
+project_settings=get_project_settings()
+
 # HTML Cleaner
 cleaner = clean.Cleaner(safe_attrs_only=True, safe_attrs=set(["style"]),page_structure=False)
 
@@ -32,6 +35,65 @@ rating_map = {
     'T'         : 'Teen & Up',
     'M'         : 'Mature'
 }
+# Logs
+os.makedirs(project_settings.get("CRAWLER_DIR","") + "errors/", exist_ok=True)
+err_log = project_settings.get("CRAWLER_DIR","") + "errors/error.jsonl"
+errCache = None
+def log_error(storyID,err,meta = {}):
+    err_log = project_settings.get("CRAWLER_DIR","")
+    dat = {
+        "storyID": int(storyID),
+        "err": str(err),
+        "meta": meta
+    }
+    with open(err_log, "a+") as dump_file:
+        dump_file.write( json.dumps(dat) + "\n" )
+    if errCache is not None:
+        errCache.append(int(storyID))
+    
+    # Print
+    meta_string = json.dumps(meta)
+    print("""
+
+    ---------------------------------------
+    ERROR
+
+    Story ID {storyID} put in error
+    {err}
+    {meta_string}
+    ---------------------------------------
+
+    """)
+def isErrored(storyID):
+    if errCache is None:
+        with open(err_log, "r") as dump_file:
+            dump_is = dump_file.readlines()
+        errCache = []
+        for line in dump_is:
+            errCache.append( int(json.loads(line)["storyID"]) )
+    isInErr = int(storyID) in errCache
+    str_not = " not"
+    if isInErr:
+        str_not = ""
+    print(str(storyID) + " is" + str_not + " in Error")
+    return isInErr
+
+# Success Logs
+os.makedirs(project_settings.get("CRAWLER_DIR","") + "logs/", exist_ok=True)
+author_log_file = project_settings.get("CRAWLER_DIR","") + "logs/authors.log"
+
+
+def author_log(author_ID,num_stories,storyIDs_imported):
+    imported_string = ", ".join(storyIDs_imported)
+    with open(author_log_file, "a+") as dump_file:
+        dump_file.write(
+            """
+
+            Crawled Author {author_ID} with {num_stories} stories
+            Story IDs updated and crawled {imported_string}
+            
+            """
+        )
 
 a_imported = []
 def find_fandom(fandom):
@@ -179,12 +241,14 @@ def insertStory(story):
     for fandomName in story["Tags"]["Fandom"]:
         fandom = find_fandom(fandomName)
         if fandom == False:
-            print(fandomName)
-            print('Fandom not found')
+            log_error(story["_id"],"Fandom not found",{
+                "fandom": fandomName
+            })
             return
         if '"' in fandom or '+' in fandom:
-            print(fandomName)
-            print('Fandom has either `+` or `"` ')
+            log_error(story["_id"],'Fandom has either `+` or `"` ',{
+                "fandom": fandomName
+            })
             return
         fandomOfName[fandomName] = fandom
         for characterName in story["Tags"].get("All Characters",[]):
@@ -195,20 +259,25 @@ def insertStory(story):
                 characterOfFandoms[fandomName] = []
             characterOfFandoms[fandomName].append(characterName)
     if sorted(list(character_fandoms.keys())) != sorted( list(set(story["Tags"].get("All Characters",[]))) ):
-        print( ",".join(character_fandoms.keys()) + " != " + ",".join(story["Tags"]["All Characters"]) )
+        log_error(story["_id"],'Unmatched Characters',{
+            "err": ",".join(character_fandoms.keys()) + " != " + ",".join(story["Tags"]["All Characters"])
+        })
         return
     # Both of the above returns indicate that something has not been found in mapper
 
     # Check if all required Tags are present
     for tagNameReq in ["Status","Rated","Language"]:
         if tagNameReq not in story["Tags"]:
-            print("Required Tag Name not present")
+            log_error(story["_id"],'Required Tag Name not present',{
+                "Tag Name": tagNameReq
+            })
             return
 
     # Now confirm if rating is proper
     if story["Tags"]["Rated"] not in rating_map:
-        print("Rating not valid")
-        print("Rated: " + story["Tags"]["Rated"])
+        log_error(story["_id"],'Rating not valid',{
+            "Rating": "Rated: " + story["Tags"]["Rated"]
+        })
         return
 
     author_ID = str(story["Author ID"])
@@ -482,7 +551,9 @@ class ffnImporter(scrapy.Spider):
                 theID = int(ffnIds[tup[0]])
                 storyChaptersExisting[theID] = storyChaptersExisting.get(theID,0) + 1
         storyIdsLookup = {value : key for (key, value) in ffnIds.items()}
-        for story in response.css("div.z-list.mystories"):
+        myStories = response.css("div.z-list.mystories")
+        crawled_stories = []
+        for story in myStories:
             storyData = parseStory(story)
             storyData["Author ID"] = Author_ID
             storyData["Author Name"] = Author_Name
@@ -502,13 +573,16 @@ class ffnImporter(scrapy.Spider):
             if (chapterStartAt > storyData["Tags"]["Chapters"]):
                 continue
             self.current.append(storyData["_id"])
-            yield response.follow(
-                "/s/" + str(storyData["_id"]) + "/" + str(chapterStartAt),
-                callback=self.parseChapter,
-                cb_kwargs = {
-                    "storyData"         : storyData
-                }
-            )
+            if not isErrored(storyData["_id"]):
+                crawled_stories.append(storyData["_id"])
+                yield response.follow(
+                    "/s/" + str(storyData["_id"]) + "/" + str(chapterStartAt),
+                    callback=self.parseChapter,
+                    cb_kwargs = {
+                        "storyData"         : storyData
+                    }
+                )
+        author_log(Author_ID,myStories.length,crawled_stories)
     def parseChapter(self, response, storyData):
         isCrossover = response.css('#pre_story_links > span > img[src="//ff74.b-cdn.net/static/fcons/arrow-switch.png"]').get() is not None
         if isCrossover:
@@ -543,7 +617,10 @@ class ffnImporter(scrapy.Spider):
             else:
                 insertStory(storyData)
         else:
-            print("Chapter Error")
+            log_error(storyData["_id"],"Chapter Error",{
+                "chapter": currentChapter,
+                "url": response.url
+            })
     def closed(self, reason):
         print("Closed")
         updateTermsCount()

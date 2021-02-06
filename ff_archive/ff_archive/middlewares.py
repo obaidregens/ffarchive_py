@@ -1,3 +1,5 @@
+import cloudscraper
+from pprint import pprint
 # Define here the models for your spider middleware
 #
 # See documentation in:
@@ -55,7 +57,6 @@ class FfArchiveSpiderMiddleware:
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
-
 
 class FfArchiveDownloaderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
@@ -120,3 +121,21 @@ class FFArchiveProxyMiddleware:
             request.headers["User-Agent"] = spider.settings[SpiderAgentSetting]
 
         # raise exceptions.IgnoreRequest("We're done")
+    def process_response(self, request, response, spider):
+        pprint(vars(request))
+        return response
+
+class FFArchiveCloudFlareMiddleware:
+    def process_request(self, request, spider):
+        if not hasattr(spider,"cloudflareBypass"):
+            tokens, user_agent = cloudscraper.get_tokens(
+                request.url
+            )
+            spider.cloudflareBypass = {}
+            spider.cloudflareBypass["agent"] = user_agent
+            spider.cloudflareBypass["tokens"] = tokens
+        request.headers["User-Agent"] = spider.cloudflareBypass["agent"]
+        request.cookies.update(spider.cloudflareBypass["tokens"])
+
+        pprint(spider.cloudflareBypass["tokens"])
+        raise exceptions.IgnoreRequest("We're done")

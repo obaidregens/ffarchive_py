@@ -32,7 +32,14 @@ if (len(user_v_ids) > 0):
 
 def verify_connection(user,code_ID):
     db.execute(
-        "SELECT ID,user_id FROM user_connections WHERE connection_user = %s AND connection_from = %s AND status = %s AND verification_ID = %s",
+        """
+        SELECT ID,user_id
+        FROM user_connections
+        WHERE connection_user = %s
+        AND connection_from = %s
+        AND status = %s
+        AND verification_ID = %s
+        """,
         [user, 'ffn', 'unverified',code_ID]
     )
     connection_row = db.fetchone()

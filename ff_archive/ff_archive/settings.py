@@ -94,17 +94,17 @@ ROBOTSTXT_OBEY = False
 CRAWLER_DIR = "/Users/obaid/Documents/py-projects/ffarchive_py/ff_archive/ff_archive/"
 
 LOG_STDOUT = True
-LOG_FILE = CRAWLER_DIR + "spiders/output.txt"
+# LOG_FILE = CRAWLER_DIR + "spiders/output.txt"
 
 # Randomize
 
 # pip3 install scrapy-rotating-proxies
 # pip3 install scrapy-fake-useragent
 
-# DOWNLOAD_DELAY = 0
-# CONCURRENT_REQUESTS_PER_DOMAIN = 12
+DOWNLOAD_DELAY = 2
+CONCURRENT_REQUESTS_PER_DOMAIN = 1
 
-IMPORTER_PROXY = "66.175.216.110:3128"
+IMPORTER_PROXY = "50.116.1.197:3128"
 IMPORTER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"
 
 VERIFICATION_PROXY = "172.105.102.90:3128"
@@ -123,7 +123,10 @@ DOWNLOADER_MIDDLEWARES = {
     # 'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
     # 'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
     # 'scrapy_fake_useragent.middleware.RetryUserAgentMiddleware': 401,
-    'ff_archive.middlewares.FFArchiveProxyMiddleware': 543,
+    # 'ff_archive.middlewares.FFArchiveProxyMiddleware': 543,
+    "ff_archive.middlewares.FFArchiveCloudFlareMiddleware": 560,
+    # "ff_archive.middlewares.FFArchiveTester": 561,
     # 'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
     # 'rotating_proxies.middlewares.BanDetectionMiddleware': 620
 }
+# HTTPERROR_ALLOWED_CODES = []
